@@ -17,152 +17,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-3 col-sm-4 animatedParent">
-                    <section class="advance-tour-filter animated fadeInRightShort clearfix">
-                        <h5 class="widget-title">filter the result</h5>
-                        <div class="search widget clearfix">
-                            <form method="get"  class="search-form" action="where-we-go.html#">
-                                <div>
-                                    <input type="text" value="" name="s" class="search-text">
-                                    <input type="submit" class="search-submit" value="">
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </form>
-                        </div>
-                        <fieldset>
-                            <div class="collapse-box">
-                                <h5 class="collapset-title no-border">My Classified
-                                    <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myclassified">
-                                        <i class="fa fa-angle-down"></i></a></h5>
-                                <div aria-expanded="true" id="myclassified" class="panel-collapse collapse in">
-                                    <ul class="acc-list">
-                                        <li class="active">
-                                            <a href="{{route('user.profile')}}">
-                                                <i class="fa fa-home"></i> Personal Home</a>
-                                        </li>
-
-                                        <li class="">
-                                            <a href="{{route('user.package')}}">
-                                                <i class="fa fa-home"></i> Purchase a Package</a>
-                                        </li>
-
-                                        <li class="">
-                                            <a href="{{route('user.profile')}}">
-                                                <i class="fa fa-briefcase"></i> Upgrade Package</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div class="collapse-box">
-                                <h5 class="collapset-title">My Listings <a aria-expanded="true"
-                                                                      class="pull-right" data-toggle="collapse"
-                                                                      href="account-home.html#myads">
-                                        <i class="fa fa-angle-down"></i></a></h5>
-                                <div aria-expanded="true" id="myads" class="panel-collapse collapse in">
-                                    <ul class="acc-list">
-                                        <li>
-                                            <a href="{{route('user.myads',['userId' => Auth::guard('user')->id()])}}">
-                                                <i class="fa fa-credit-card"></i> My Ads</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('user.favourites',['userId' => Auth::guard('user')->id()])}}">
-                                                <i class="fa fa-heart-o"></i> Favourite Ads</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('user.search',['userId' => Auth::guard('user')->id()])}}">
-                                                <i class="fa fa-star-o"></i> Saved Search </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('user.archived',['userId' => Auth::guard('user')->id()])}}">
-                                                <i class="fa fa-folder-o"></i> Archived Ads</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{route('user.pending',['userId' => Auth::guard('user')->id()])}}">
-                                                <i class="fa fa-hourglass"></i> Pending Approval </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset>
-                            <div class="collapse-box">
-                                <h5 class="collapset-title">Listing Orders <a aria-expanded="true" class="pull-right"
-                                                                              data-toggle="collapse" href="#orders">
-                                        <i class="fa fa-angle-down"></i></a></h5>
-                                <div aria-expanded="true" id="orders" class="panel-collapse collapse in">
-                                    <ul class="acc-list">
-                                        {{--@foreach(App\ServiceRequest::where('type',2)->get() as $order)
-                                            @if($order->company->user_id==$auth_user_id)--}}
-                                                <li>
-                                                    <a href="#" data-toggle="modal"
-                                                       data-target="#modal-default-order">
-                                                        <i class="fa fa-briefcase"></i>Name {{--{{$order->name}}--}}</a>
-                                                </li>
-
-                                                {{--<div class="modal fade" id="modal-default-order">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <aside class="panel panel-body panel-details">
-                                                                <ul>
-
-                                                                    <li>
-                                                                        <p class="no-margin"><strong>Client Name:</strong>
-                                                                            <a href="#"> {{$order->name}} </a></p></li>
-                                                                    <li>
-                                                                    <li>
-                                                                        <p class="no-margin"><strong>Client Contact:</strong>
-                                                                            <a href="#">{{$order->contact}}</a> </p>
-                                                                    </li>
-                                                                    <li>
-                                                                        <p class=" no-margin "><strong>Email
-                                                                                Address:</strong>
-                                                                            <a href="#">{{$order->email}}</a></p>
-                                                                    </li>
-                                                                    <li>
-                                                                        <p class="no-margin"><strong>Location:</strong>
-                                                                            <a href="#">{{$order->location}}</a></p>
-                                                                    </li>
-                                                                    <li>
-                                                                        <p class="no-margin"><strong>Order Date:</strong>
-                                                                            <a href="#">{{$order->created_at}}</a></p>
-                                                                    </li>
-                                                                    <li>
-                                                                        <p class="no-margin"><strong>Order Details:</strong>
-                                                                            <a href="#">{{$order->details}}</a></p>
-                                                                    </li>
-                                                                </ul>
-                                                            </aside>
-                                                        </div>
-                                                        <!-- /.modal-content -->
-                                                    </div>
-                                                    <!-- /.modal-dialog -->
-                                                </div>
-                                                <!-- /.modal -->
-                                            @endif
-                                        @endforeach--}}
-                                    </ul>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset class="range-filter">
-                            <div class="collapse-box">
-                                <h5 class="collapset-title">Terminate Account
-                                    <a aria-expanded="true" class="pull-right" data-toggle="collapse"
-                                       href="account-home.html#close"><i class="fa fa-angle-down"></i></a></h5>
-                                <div aria-expanded="true" id="close" class="panel-collapse collapse in">
-                                    <ul class="acc-list">
-                                        <li>
-                                            <a href="{{route('account.close')}}"><i class="fa fa-close"></i>
-                                                Close Account</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </section>
-                </div>
+                @include('user.left_bar')
                 <div class="col-md-9 col-sm-8">
                     <header class="section-header clearfix">
                         <div class="sorting pull-left">
@@ -181,6 +36,7 @@
                             <a data-layout="12" href="where-we-go.html#"><i class="fa fa-th-list"></i></a>
                         </div>
                     </header>
+
                     @if(sizeof($companies)>0)
                     <div class="row">
                         @foreach($companies as $company)
@@ -188,7 +44,15 @@
                             <article class="tour-post animated fadeInDownShort">
                                 <header class="tour-post-header clearfix">
                                     <span class="tour-price pull-left">UGx {{money_format("%.2n",$company->price)}}</span>
-                                    <span class="tour-days pull-right"><i class="fa fa-clock-o"></i>&nbsp; rating</span>
+                                    <span class="tour-days pull-right" style="color: #FDC600">
+                                     @for ($k=1; $k <= 5 ; $k++)
+                                            <span data-title="Average Rate: 5 / 5"
+                                                  class="bottom-ratings tip">
+                                                        <span class="glyphicon glyphicon-star{{ ($k <= $company->rating) ? '' : '-empty'}}"></span>
+                                                            </span>
+                                        @endfor
+                                        ({{$company->rating}})
+                                    </span>
                                 </header>
                                 <div class="tour-contents clearfix">
                                     <figure class="tour-feature-img">
@@ -200,6 +64,8 @@
                                     <div class="entry-contents hide clearfix" style="">
                                         <p> {{ str_limit($company->description, $limit = 150, $end = '...') }} </p>
                                     </div>
+
+                                    <span class="pull-left" style="color: #fd0b31">views ({{$company->views}})</span>
                                     <a class="more-details u-url" href="/{{$company->slug}}">See home details
                                         <i class="fa fa-angle-double-right"></i></a>
                                 </div>
@@ -218,6 +84,8 @@
                         </ul>
                     </div>
                 </div>
+
+
 
             </div>
         </div>

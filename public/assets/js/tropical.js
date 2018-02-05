@@ -136,6 +136,41 @@
             ]
         });
 
+        // Partners Carousel
+        $('.experience-carousel').slick({
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false,
+            infinite: true,
+            speed: 500,
+            autoplay: true,
+            adaptiveHeight: true,
+            responsive: [
+                {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 700,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+
         $('.tour-single-slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,

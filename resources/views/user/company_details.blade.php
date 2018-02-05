@@ -20,7 +20,7 @@
             </div>
             <span class="overlay"></span>
         </div>
-
+        @include('flash::message')
         <section class="tour-single clearfix">
             <div class="container">
 
@@ -74,21 +74,110 @@
                                 </div>
                                 <p> {{$company->description}}</p>
                                 <footer class="tour-contents-footer clearfix">
-                                    <a class="t-btn btn-red pull-right" href="single-where-we-go.html#" data-toggle="modal"
+                                    @if(Auth::guard('user')->user() )
+                                    <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
                                        data-target="#booking-popup">Booking Now</a>
-                                    <a class="t-btn btn-black-border pull-right" href="single-where-we-go.html#"
-                                       data-toggle="modal" data-target="#ask-q-popup">Ask Question</a>
+                                    @else
+                                        <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
+                                           data-target="#booking-popup">Request Home</a>
+                                    @endif
                                     <div class="modal fade" id="booking-popup" tabindex="-1" role="dialog"
                                          aria-labelledby="booking-popup" aria-hidden="true">
                                         <div class="modal-dialog">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                                <i class="fa fa-close"></i></button>
+                                            <form method="post" action="{{route('submit.request')}}">
+                                                {{ csrf_field() }}
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                    @if(Auth::guard('user')->user() )
+                                                        <h4 class="modal-title">Book this Home</h4>
+                                                        <input name="type" value="1" type="hidden"/>
+                                                    @else
+                                                        <h4 class="modal-title">Request this Home</h4>
+                                                        <input name="type" value="2" type="hidden"/>
+                                                    @endif
+                                                </div>
+                                                <div class="modal-body col-md-12">
+                                                    @if(!Auth::guard('user')->user() )
+                                                        <div class="form-group">
+                                                            <div class="input-icon">
+                                                                <input name="name" class="form-control"
+                                                                       placeholder="Your Full Name" type="text" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-icon">
+                                                                <input name="contact" class="form-control"
+                                                                       placeholder="Your Contact" type="text" required/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="input-icon">
+                                                                <input name="email" class="form-control"
+                                                                       placeholder="Your Email Address" type="text" required/>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <input name="age" class="form-control"
+                                                                   placeholder="How old are you?" type="text" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <select name="gender">
+                                                                <option value="male">Male</option>
+                                                                <option value="female">Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <input name="guests" class="form-control"
+                                                                   placeholder="Number of Guests" type="text" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <input name="profession" class="form-control"
+                                                                   placeholder="Your Profession" type="text" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <input name="period" class="form-control"
+                                                                   placeholder="Period of Stay" type="text" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                            <input name="service_id" value="{{$company->id}}" type="hidden"/>
+                                                            <input name="slug" value="{{$company->slug}}" type="hidden"/>
 
-                                        </div>
-                                    </div>
-                                    <div class="modal fade" id="ask-q-popup" tabindex="-1" role="dialog" aria-labelledby="ask-q-popup" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i></button>
+                                                            <input name="location" class="form-control"
+                                                                   placeholder="Preferred  location" type="text" required/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="input-icon">
+                                                        <textarea rows="3" class="form-control" name="expectations"
+                                                                  placeholder="Enter request info" type="text">Detailed Expectations....
+                                                        </textarea>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn-sm btn-warning pull-left"
+                                                            data-dismiss="modal">
+                                                        <i class="fa fa-close"></i>
+                                                    </button>
+                                                    <input type="submit" class="btn-sm btn-primary" value="Submit">
+                                                </div>
+
+                                            </form>
 
                                         </div>
                                     </div>

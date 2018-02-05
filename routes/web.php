@@ -44,8 +44,8 @@ Route::post('request', 'User\ServiceRequestsController@submitRequest')->name('su
 //authentication routes
 Route::post('/user/registration', 'User\RegisterController@registerUser')->name('user.submit');
 Route::post('/login', 'User\LoginController@login')->name('user.login.submit');
-Route::post('/logout', 'User\LoginController@logout')->name('user.logout');
-Route::get('/register', 'User\RegisterController@userRegister')->name('user.register');
+Route::get('/user/logout', 'User\LoginController@logout')->name('user.logout');
+Route::get('//register', 'User\RegisterController@userRegister')->name('user.register');
 Route::get('/login', 'User\LoginController@userLogin')->name('user.login');
 Route::get('/user-account-details', 'User\ServiceController@displayProfile')->name('user.profile.display');
 
@@ -62,7 +62,10 @@ Route::get('/services/{id}/details', 'User\HomeController@adsDetails')->name('se
 
 Route::group(['middleware' => 'user'], function () {
 //user account
+    //experience routes
+    Route::post('experience', 'User\UserExperienceController@submitExperience')->name('submit.experience');
     Route::get('/user-account', 'User\UserProfileController@showUserProfile')->name('user.profile');
+    Route::get('/user-profile', 'User\UserProfileController@editUserProfile')->name('user.profile.edit');
     Route::get('/user/{userId}/myads', 'User\UserProfileController@myAds')->name('user.myads');
     Route::get('/user/{userId}/favourites', 'User\FavouritesController@myFavourites')->name('user.favourites');
     Route::get('/user/{userId}/mysearch', 'User\UserProfileController@mySearch')->name('user.search');

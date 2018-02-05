@@ -55,16 +55,14 @@
             </div>
         </div>
     </div>
-    <div class="site-info text-center animated pulse">
-        <section class="widget widget_pages animated flipInX slower clearfix">
-            <ul>
-                <li class="page_item page-item-17">
-                    <a href="{{route('user.termsofUse')}}">Terms of Use</a></li>
-                <li class="page_item page-item-19">
-                    <a href="{{route('user.privacy')}}">Privacy Policy</a></li>
-            </ul>
-        </section>
-        <p>Copyright © <?php echo date('Y');?> Reserved by- Shatsi Group LTD.</p>
-
+    <div class="site-info animated pulse col-md-12" style="background-color: black">
+                <div class="pull-left col-sm-8" style="background-color: black">
+                    <p>Copyright © <?php echo date('Y');?> Reserved by- Shatsi Group LTD.</p>
+                </div>
+                <div class="pull-right col-sm-4" style="background-color: black">
+                    <a href="{{route('user.termsofUse')}}">Terms of Use</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="{{route('user.privacy')}}">Privacy Policy</a>
+                </div>
     </div><!-- .site-info -->
 </footer><!-- .site-footer -->

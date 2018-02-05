@@ -23,4 +23,8 @@ class Company extends Model
     public function images(){
         return $this->hasMany('App\ServiceImage');
     }
+
+    public function favorites_to_user(){
+        return $this->belongsToMany('App\User','favourites');
+    }
 }

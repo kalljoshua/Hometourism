@@ -38,8 +38,17 @@ class UserProfileController extends Controller
         //->with('t','agent');
     }
 
+    function editUserProfile()
+    {
+        $auth_user_id = Auth::guard('user')->id();
+
+        $user = User::find($auth_user_id);
+        return view('user.user_profile_edit')
+            ->with('user',$user);
+    }
+
     function userUpdatePassword (Request $request){
-        $id = $this->guard()->user()->id;
+        $id = Auth::guard('user')->id();
         $hashedPassword = $this->guard()->user()->password;
         $agent = User::find($id);
 
@@ -50,37 +59,38 @@ class UserProfileController extends Controller
                 if(Input::has('newpass')) $agent->password = bcrypt(Input::get('newpass'));
                 if($agent->save()){
                     flash('Password update was successfully done.')->success();
-                    return redirect(route('user.profile'));
+                    return redirect(route('user.profile.edit'));
                 }
             }else{
                 flash('Un successfull Update, Password miss-match')->success();
-                return redirect(route('user.profile'));
+                return redirect(route('user.profile.edit'));
             }
         }else{
             flash('Un successfull Update. Provide correct old password')->success();
-            return redirect(route('user.profile'));
+            return redirect(route('user.profile.edit'));
         }
 
     }
 
     public function userEditSubmit(Request $request){
 
-        $id = $this->guard()->user()->id;
+        $id = Auth::guard('user')->id();
         $user = User::find($id);
 
-        if(Input::has('first_name')) $user->first_name = Input::get('first_name');
-        if(Input::has('last_name')) $user->last_name = Input::get('last_name');
-        if(Input::has('email')) $user->email = Input::get('email');
+        if(Input::has('name')) $user->name = Input::get('name');
+        if(Input::has('country')) $user->country = Input::get('country');
+        if(Input::has('address')) $user->address = Input::get('address');
         if(Input::has('phone')) $user->phone = Input::get('phone');
+        if(Input::has('email')) $user->email = Input::get('email');
 
         if($user->save()){
             flash('Update was successfully done.')->success();
-            return redirect(route('user.profile'));
+            return redirect(route('user.profile.edit'));
         }
         else {
             # code...
             flash('Update was unsuccessfully done.')->success();
-            return redirect(route('user.profile'));
+            return redirect(route('user.profile.edit'));
         }
 
         /*if( $request->hasFile('edit_photo') ) {
@@ -152,7 +162,7 @@ class UserProfileController extends Controller
         $id = Auth::guard('user')->id();
         $services = Company::where('active',0)->where('user_id',$id)->paginate(5);
         return view("user.pending")
-            ->with('services',$services);
+            ->with('companies',$services);
     }
 
 

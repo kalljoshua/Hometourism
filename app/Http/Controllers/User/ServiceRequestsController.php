@@ -19,27 +19,32 @@ class ServiceRequestsController extends Controller
         if(Input::has('slug')) $slug = Input::get('slug');
         if(Input::has('location')) $requests->location = Input::get('location');
         if(Input::has('type')) $requests->type = Input::get('type');
+        if(Input::has('age')) $requests->age = Input::get('age');
+        if(Input::has('gender')) $requests->gender = Input::get('gender');
+        if(Input::has('guests')) $requests->guests = Input::get('guests');
+        if(Input::has('profession')) $requests->profession = Input::get('profession');
+        if(Input::has('period')) $requests->period = Input::get('period');
 
         if(Auth::guard('user')->user())
         {
             $requests->email = Auth::guard('user')->user()->email;
             $requests->contact = Auth::guard('user')->user()->phone;
-            $requests->name = Auth::guard('user')->user()->first_name." ".Auth::guard('user')->user()->last_name;
+            $requests->name = Auth::guard('user')->user()->name;
         }else{
             if(Input::has('email')) $requests->email = Input::get('email');
             if(Input::has('name')) $requests->name = Input::get('name');
             if(Input::has('contact')) $requests->contact = Input::get('contact');
         }
 
-        if(Input::has('details')) $requests->details = Input::get('details');
+        if(Input::has('expectations')) $requests->expectations = Input::get('expectations');
 
         if($requests->save()){
             if(Input::get('type')==2) {
                 flash('Your request has successfully been sent')->success();
                 return redirect(route('company.details', ['slug' => $slug]));
             }else{
-                flash('Your request has successfully been sent')->success();
-                return Redirect::back();
+                flash('Your Order has successfully been sent')->success();
+                return redirect(route('company.details', ['slug' => $slug]));
             }
 
         }else{
@@ -47,8 +52,8 @@ class ServiceRequestsController extends Controller
                 flash('Failed to send Request')->error();
                 return redirect(route('company.details', ['slug' => $slug]));
             }else{
-                flash('Failed to send Request')->error();
-                return Redirect::back();
+                flash('Failed to send Order')->error();
+                return redirect(route('company.details', ['slug' => $slug]));
             }
         }
 

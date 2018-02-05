@@ -373,7 +373,7 @@ h5 {
 }
 @media (min-width: 768px) {
     .modal-dialog {
-        width: 370px;
+        width: 50%;
     }
 }
 .datepicker {
@@ -639,12 +639,12 @@ h5 {
     color: #fc4242;
 }
 .main-nav {
-    margin-top: 19px;
+    margin-top: 0px;
 }
 .main-menu > li {
     float: left;
     list-style: none;
-    margin-right: 30px;
+    margin-right: 20px;
     position: relative;
 }
 .main-menu > li > a {
@@ -659,9 +659,9 @@ h5 {
 }
 .main-menu > li > ul {
     position: absolute;
-    top: 26px;
+    top: 20px;
     left: 0;
-    padding-top: 62px;
+    padding-top: 42px;
 }
 .main-menu > li ul {
     z-index: 99;
@@ -1528,7 +1528,7 @@ h5 {
     margin-bottom: 50px;
 }
 .tour-carousel {
-    padding: 5px 30px;
+    padding: 2px 30px;
 }
 .tour-carousel .tour-post-header {
     position: relative;
@@ -1605,12 +1605,17 @@ h5 {
 }
 .tour-price {
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: 15px;
 }
 .tour-price-off {
     background: #fc4242;
     padding: 1px 10px;
     color: #fff;
+    font-weight: 500;
+}
+.tour-price-off-h {
+    padding: 1px 10px;
+    color: #FDC600;
     font-weight: 500;
 }
 .tour-contents {

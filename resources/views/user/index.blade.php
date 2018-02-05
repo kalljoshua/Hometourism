@@ -57,6 +57,7 @@
             </div>
         </form>
     </div>
+    @if(sizeof($featured_services)>0)
     <section class="home-special-offers animatedParent clearfix">
         <div class="container">
             <header class="section-header header-with-nav clearfix">
@@ -64,27 +65,40 @@
                 <a class="pull-right animated growIn" href="index.html#">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
-                @for($i=1; $i<=5; $i++)
+                @foreach($featured_services as $featured)
                 <article class="tour-post">
                     <i class="circle-icon"></i>
                     <header class="tour-post-header clearfix">
-                        <span class="tour-price pull-left">$299.00</span>
-                        <span class="tour-price-off pull-right">30% OFF</span>
+                        <span class="tour-price pull-left">UGx {{money_format("%.2n",$featured->price)}}</span>
+                        <span class="tour-price-off-h pull-right">
+                         @for ($k=1; $k <= 5 ; $k++)
+                                <span data-title="Average Rate: 5 / 5"
+                                      class="bottom-ratings tip">
+                                                        <span class="glyphicon glyphicon-star{{ ($k <= $featured->rating) ? '' : '-empty'}}"></span>
+                                                            </span>
+                            @endfor
+                            ({{$featured->rating}})
+                        </span>
                     </header>
                     <div class="tour-contents clearfix">
                         <figure class="tour-feature-img">
-                            <img src="/assets/images/tour-carousel-img-{{$i}}.jpg" alt="Image"/>
+                            <img src="/images/services/our_location_770x370/{{$featured->image}}" alt="Image"/>
                         </figure>
-                        <h5 class="entry-title p-name">Thai island hopper east</h5>
-                        <a class="more-details u-url" href="index.html#">See tour details <i class="fa fa-angle-right"></i></a>
+                        <h5 class="entry-title p-name">{{$featured->name}}</h5>
+                        <span style="color: #FDC600">views ({{$featured->views}})</span>
+                        <a class="more-details u-url" href="/{{$featured->slug}}">
+                            See home details <i class="fa fa-angle-right"></i></a>
                     </div>
                 </article>
-                @endfor
+                @endforeach
             </div>
         </div>
     </section>
+
     <div style="height: 15px; background-color: white;">
     </div>
+    @endif
+    @if(sizeof($most_viewed_services)>0)
     <section class="home-special-offers animatedParent clearfix">
         <div class="container">
             <header class="section-header header-with-nav clearfix">
@@ -92,27 +106,39 @@
                 <a class="pull-right animated growIn" href="index.html#">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
-                @for($i=1; $i<=5; $i++)
+                @foreach($most_viewed_services as $most_viewed)
                     <article class="tour-post">
                         <i class="circle-icon"></i>
                         <header class="tour-post-header clearfix">
-                            <span class="tour-price pull-left">$299.00</span>
-                            <span class="tour-price-off pull-right">30% OFF</span>
+                            <span class="tour-price pull-left">UGx {{money_format("%.2n",$most_viewed->price)}}</span>
+                            <span class="tour-price-off-h pull-right">
+                         @for ($k=1; $k <= 5 ; $k++)
+                                    <span data-title="Average Rate: 5 / 5"
+                                          class="bottom-ratings tip">
+                                                        <span class="glyphicon glyphicon-star{{ ($k <= $most_viewed->rating) ? '' : '-empty'}}"></span>
+                                                            </span>
+                                @endfor
+                                ({{$most_viewed->rating}})
+                        </span>
                         </header>
                         <div class="tour-contents clearfix">
                             <figure class="tour-feature-img">
-                                <img src="/assets/images/tour-carousel-img-{{$i}}.jpg" alt="Image"/>
+                                <img src="/images/services/our_location_770x370/{{$most_viewed->image}}" alt="Image"/>
                             </figure>
-                            <h5 class="entry-title p-name">Thai island hopper east</h5>
-                            <a class="more-details u-url" href="index.html#">See tour details <i class="fa fa-angle-right"></i></a>
+                            <h5 class="entry-title p-name">{{$most_viewed->name}}</h5>
+                            <span style="color: #FDC600">views ({{$most_viewed->views}})</span>
+                            <a class="more-details u-url" href="/{{$most_viewed->slug}}">
+                                See home details <i class="fa fa-angle-right"></i></a>
                         </div>
                     </article>
-                @endfor
+                @endforeach
             </div>
         </div>
     </section>
     <div style="height: 15px; background-color: white;">
     </div>
+    @endif
+    @if(sizeof($recent_services)>0)
     <section class="home-special-offers animatedParent clearfix">
         <div class="container">
             <header class="section-header header-with-nav clearfix">
@@ -120,29 +146,40 @@
                 <a class="pull-right animated growIn" href="index.html#">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
-                @for($i=1; $i<=5; $i++)
+                @foreach($recent_services as $recent)
                     <article class="tour-post">
                         <i class="circle-icon"></i>
                         <header class="tour-post-header clearfix">
-                            <span class="tour-price pull-left">$299.00</span>
-                            <span class="tour-price-off pull-right">30% OFF</span>
+                            <span class="tour-price pull-left">UGx {{money_format("%.2n",$recent->price)}}</span>
+                            <span class="tour-price-off-h pull-right">
+                         @for ($k=1; $k <= 5 ; $k++)
+                                    <span data-title="Average Rate: 5 / 5"
+                                          class="bottom-ratings tip">
+                                                        <span class="glyphicon glyphicon-star{{ ($k <= $recent->rating) ? '' : '-empty'}}"></span>
+                                                            </span>
+                                @endfor
+                                ({{$recent->rating}})
+                        </span>
                         </header>
                         <div class="tour-contents clearfix">
                             <figure class="tour-feature-img">
-                                <img src="/assets/images/tour-carousel-img-{{$i}}.jpg" alt="Image"/>
+                                <img src="/images/services/our_location_770x370/{{$recent->image}}" alt="Image"/>
                             </figure>
-                            <h5 class="entry-title p-name">Thai island hopper east</h5>
-                            <a class="more-details u-url" href="index.html#">See tour details <i class="fa fa-angle-right"></i></a>
+                            <h5 class="entry-title p-name">{{$recent->name}}</h5>
+                            <span style="color: #FDC600">views ({{$recent->views}})</span>
+                            <a class="more-details u-url" href="/{{$recent->slug}}">
+                                See home details <i class="fa fa-angle-right"></i></a>
                         </div>
                     </article>
-                @endfor
+                @endforeach
             </div>
         </div>
     </section>
+    @endif
     <section class="home-tour-type animatedParent clearfix">
         <div class="container">
             <header class="text-center">
-                <h3 class="title-with-separator animated growIn">Explore the World by type</h3>
+                <h3 class="title-with-separator animated growIn">Explore the Host Homes by type</h3>
             </header>
             <div class="row">
                 @foreach(App\Type::all() as $type)
@@ -227,64 +264,37 @@
             </div>
         </div>
     </section>
-
+    @if(sizeof($experiences)>0)
     <section class="testimonials animatedParent clearfix" style="background-color: white">
         <div class="container">
             <header class="text-center">
                 <h3 class="title-with-separator animated growIn">User Experience</h3>
             </header>
-            <div class="row">
-                <div class="col-sm-6">
-                    <article class="testimonial animated fadeInUpShort clearfix">
-                        <figure class="avatar">
-                            <img src="/assets/images/avatar.jpg" alt="avatar"/>
-                        </figure>
-                        <div class="contents">
-                            <p>“Maecenas faucibus mollis intedum. Nulla vitaery elit ayt lbero pharetra augue. Integer posuere ererotu  anten tuer venenatise Dapibus posuere. Aenean eu leo quam”
-                            </p>
-                            <cite class="fn">- <strong>Steave Jhon,</strong> tourism Specialist</cite>
+            <div class="row experience-carousel">
+                @foreach($experiences as $experience)
+                    <div class="carousel-inner">
+                        <div class="col-sm-12">
+                            <article class="testimonial animated fadeInUpShort clearfix">
+                                <figure class="avatar">
+                                    <img src="/assets/images/avatar.jpg" alt="avatar"/>
+                                </figure>
+                                <div class="contents">
+                                    <p>“{{$experience->details}}”
+                                    </p>
+                                    <cite class="fn">- <strong>{{$experience->user->name}}</strong></cite>
+                                </div>
+                            </article>
                         </div>
-                    </article>
-                </div>
-                <div class="col-sm-6">
-                    <article class="testimonial animated fadeInUpShort clearfix">
-                        <figure class="avatar">
-                            <img src="/assets/images/avatar.jpg" alt="avatar"/>
-                        </figure>
-                        <div class="contents">
-                            <p>“Maecenas faucibus mollis intedum. Nulla vitaery elit ayt lbero pharetra augue. Integer posuere ererotu  anten tuer venenatise Dapibus posuere. Aenean eu leo quam”
-                            </p>
-                            <cite class="fn">- <strong>Steave Jhon,</strong> tourism Specialist</cite>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sm-6">
-                    <article class="testimonial animated fadeInDownShort clearfix">
-                        <figure class="avatar">
-                            <img src="/assets/images/avatar.jpg" alt="avatar"/>
-                        </figure>
-                        <div class="contents">
-                            <p>“Maecenas faucibus mollis intedum. Nulla vitaery elit ayt lbero pharetra augue. Integer posuere ererotu  anten tuer venenatise Dapibus posuere. Aenean eu leo quam”
-                            </p>
-                            <cite class="fn">- <strong>Steave Jhon,</strong> tourism Specialist</cite>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sm-6">
-                    <article class="testimonial animated fadeInDownShort clearfix">
-                        <figure class="avatar">
-                            <img src="/assets/images/avatar.jpg" alt="avatar"/>
-                        </figure>
-                        <div class="contents">
-                            <p>“Maecenas faucibus mollis intedum. Nulla vitaery elit ayt lbero pharetra augue. Integer posuere ererotu  anten tuer venenatise Dapibus posuere. Aenean eu leo quam”
-                            </p>
-                            <cite class="fn">- <strong>Steave Jhon,</strong> tourism Specialist</cite>
-                        </div>
-                    </article>
-                </div>
+                    </div>
+                @endforeach
             </div>
+
         </div>
+
     </section>
+
+    @endif
+
     <section class="partners clearfix" style="background-color: #F8F8F8">
         <div class="container">
             <header class="text-center animatedParent">

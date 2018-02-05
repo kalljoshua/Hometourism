@@ -1,138 +1,190 @@
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-3 container-sidebar">
-    <aside id="sidebar" class="sidebar-white">
-        <div class="widget widget-slider">
-            <div class="widget-top">
-                <h3 class="widget-title">Featured Properties Slider</h3>
-            </div>
-            <div class="widget-body">
-                <div class="property-widget-slider">
-                  <?php $featured_properties = App\Property::where('active',1)->take(4)->get();?>
-                  @if(sizeof($featured_properties)>0)
-                  @foreach($featured_properties as $featured)
-                    <div class="item">
-                        <div class="figure-block">
-                            <figure class="item-thumb">
-                              @if($featured->active==1)
-                               <span class="label-featured label label-success">Featured</span>
-                              @endif
-                              <div class="label-wrap label-right">
-                                @if($featured->for_sale==1)
-                                  <div class="label-status label label-default">For Sale</div>
-                                @else
-                                  <div class="label-status label label-default">For Rent</div>
-                                @endif
+<div class="col-md-3 col-sm-4 animatedParent">
+    <section class="advance-tour-filter animated fadeInRightShort clearfix">
+        <h5 class="widget-title">filter the result</h5>
+        <div class="search widget clearfix">
+            <form method="get"  class="search-form" action="where-we-go.html#">
+                <div>
+                    <input type="text" value="" name="s" class="search-text">
+                    <input type="submit" class="search-submit" value="">
+                    <i class="fa fa-search"></i>
+                </div>
+            </form>
+        </div>
+        <fieldset>
+            <div class="collapse-box">
+                <h5 class="collapset-title no-border">My Classified
+                    <a aria-expanded="true" class="pull-right" data-toggle="collapse" href="#myclassified">
+                        <i class="fa fa-angle-down"></i></a></h5>
+                <div aria-expanded="true" id="myclassified" class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        <li class="active">
+                            <a href="{{route('user.profile')}}">
+                                <i class="fa fa-home"></i> Personal Home</a>
+                        </li>
 
-                                  <span class="label label-danger">Hot Offer</span>
-                              </div>
+                        <li class="">
+                            <a href="#" data-toggle="modal"
+                               data-target="#modal-default-experience">
+                                <i class="fa fa-briefcase"></i> User Experience</a>
+                        </li>
 
-                                <a href="/property-details/{{$featured->id}}" class="hover-effect">
-                                    <img src="/images/properties/featured_slider_370x202/{{$featured->image}}" alt="thumb">
-                                </a>
-                                <div class="price">
-                                    <span class="item-price">Shs {{$featured->price}}</span>
-                                </div>
-                                <ul class="actions">
-                                  <li>
-                                      <span id="fav-span{{$featured->id}}" data-toggle="tooltip" data-placement="top" title="Favorite"
-                                            onclick="addToFavorites({{$featured->id}},
-                                            @if(Auth::guard('agent')->id())
-                                            {{Auth::guard('agent')->id()}}
-                                                    @else
-                                                    0
-                                                    @endif
-                                                    );"
-                                            >
-                                          <i class="fa fa-heart-o"></i>
-                                      </span>
-                                    </li>
-                                    <li class="share-btn">
-                                        <?php $url = URL::full();?>
-                                        <div class="share_tooltip fade">
-                                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($url) }}">
-                                                <i class="fa fa-facebook"></i></a>
-                                            <a target="_blank" href="https://twitter.com/intent/tweet?url={{ urlencode($url) }}">
-                                                <i class="fa fa-twitter"></i></a>
-                                            <a target="_blank" href="https://plus.google.com/share?url={{ urlencode($url) }}">
-                                                <i class="fa fa-google-plus"></i></a>
-                                        </div>
-                                        <span title="" data-placement="top" data-toggle="tooltip" data-original-title="share"><i class="fa fa-share-alt"></i></span>
-                                    </li>
-                                </ul>
-                            </figure>
-                        </div>
-                    </div>
-                  @endforeach
-                @else
-                  Unfortunately, No Featured properties found!
-                @endif
 
+                        <li class="">
+                            <a href="{{route('user.profile.edit')}}">
+                                <i class="fa fa-user"></i> user Profile</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="widget widget-recommend">
-            <div class="widget-top">
-                <h3 class="widget-title">We recommend</h3>
-            </div>
-            <?php $recommended = App\Property::where('recommended',1)->take(4)->get();?>
-            <div class="widget-body">
-              @if(sizeof($recommended)>0)
-              @foreach($recommended as $recommend_property)
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="item-thumb">
-                            <a class="hover-effect" href="/property-details/{{$recommend_property->id}}">
-                                <img alt="thumb" src="/images/properties/agent_properties_150x110/{{$recommend_property->image}}" width="100" height="75">
-                            </a>
-                        </figure>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="media-heading"><a href="/property-details/{{$recommend_property->id}}">{{$recommend_property->title}}</a></h3>
-                        <h4>Shs {{$recommend_property->price}}</h4>
-                        <div class="amenities">
-                            <p>{{$recommend_property->bedrooms}} beds • {{$recommend_property->bathrooms}} baths • {{$recommend_property->area_size}} sqft</p>
-                            <p>{{$recommend_property->type->name}}</p>
-                        </div>
-                    </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="collapse-box">
+                <h5 class="collapset-title">My Listings <a aria-expanded="true"
+                                                           class="pull-right" data-toggle="collapse"
+                                                           href="account-home.html#myads">
+                        <i class="fa fa-angle-down"></i></a></h5>
+                <div aria-expanded="true" id="myads" class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        <li>
+                            <a href="{{route('user.profile')}}">
+                                <i class="fa fa-credit-card"></i> My Ads</a>
+                        </li>
+                        <li>
+                            <a href="{{route('user.favourites',['userId' => Auth::guard('user')->id()])}}">
+                                <i class="fa fa-heart-o"></i> Favourite Ads</a>
+                        </li>
+                        <li>
+                            <a href="{{route('user.pending',['userId' => Auth::guard('user')->id()])}}">
+                                <i class="glyphicon glyphicon-hourglass"></i> Pending Approval </a>
+                        </li>
+                    </ul>
                 </div>
-                @endforeach
-              @else
-                Unfortunately, No recommended properties found!
-              @endif
             </div>
-        </div>
-        <div class="widget widget-reviews">
-            <div class="widget-top">
-                <h3 class="widget-title">Latest Reviews</h3>
-            </div>
-            <?php $latest_reviews = App\Review::orderBy('created_at','DESC')->take(2)->get(); ?>
-            <div class="widget-body">
-              @if(sizeof($latest_reviews)>0)
-              @foreach($latest_reviews as $reviews)
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object"
-                            src="/images/properties/latest_reviews_50x50/{{$reviews->property->image}}"
-                            alt="Thumb" width="50" height="50">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h3 class="media-heading"><a href="/property-details/{{$reviews->property->id}}">{{$reviews->property->title}}</a></h3>
-                        <div class="rating">
-                            <span class="bottom-ratings">
-                              @for ($k=1; $k <= 5 ; $k++)
-                            <span data-title="Average Rate: 5 / 5" class="bottom-ratings tip">
-                                <span class="glyphicon glyphicon-star{{ ($k <= $reviews->property->rating) ? '' : '-empty'}}"></span></span>
-                            @endfor
-                        </div>
-                        <p>{{$reviews->review}}</p>
-                    </div>
+        </fieldset>
+        <fieldset>
+            <div class="collapse-box">
+                <h5 class="collapset-title">Listing Orders <a aria-expanded="true" class="pull-right"
+                                                              data-toggle="collapse" href="#orders">
+                        <i class="fa fa-angle-down"></i></a></h5>
+                <div aria-expanded="true" id="orders" class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        @foreach(App\ServiceRequest::where('type',2)->get() as $order)
+                            @if($order->company->user_id==Auth::guard('user')->id())
+                                <li>
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#modal-default-order">
+                                        <i class="fa fa-clipboard"></i> {{$order->name}}</a>
+                                </li>
+
+                            @endif
+                        @endforeach
+                    </ul>
                 </div>
-              @endforeach
-            @else
-              Unfortunately, No reviews found!
-            @endif
             </div>
-        </div>
-    </aside>
+        </fieldset>
+        <fieldset class="range-filter">
+            <div class="collapse-box">
+                <h5 class="collapset-title">Terminate Account
+                    <a aria-expanded="true" class="pull-right" data-toggle="collapse"
+                       href="account-home.html#close"><i class="fa fa-angle-down"></i></a></h5>
+                <div aria-expanded="true" id="close" class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        <li>
+                            <a href="{{route('account.close')}}"><i class="fa fa-close"></i>
+                                Close Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </fieldset>
+    </section>
 </div>
+
+
+
+<div class="modal fade" id="modal-default-experience">
+    <div class="modal-dialog">
+        <div class="modal-content col-md-12">
+            <form method="post" action="{{route('submit.experience')}}">
+                {{ csrf_field() }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title">User Experience</h5>
+                </div>
+                <div class="modal-body col-md-12 col-sm-12">
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="user_id" value="{{Auth::guard('user')->id()}}"
+                                   type="hidden"/>
+                            <label>User Experience: </label>
+                            <textarea rows="3" class="form-control" name="details"
+                                      placeholder="Enter request info" type="text">User Experience....
+                                                                </textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-sm btn-danger pull-left"
+                            data-dismiss="modal">
+                        X
+                    </button>
+                    <input type="submit" class="btn-sm btn-primary" value="Submit"></input>
+                </div>
+
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-default-order">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <aside class="panel panel-body panel-details">
+                <ul>
+
+                    <li>
+                        <p class="no-margin"><strong>Client Name:</strong>
+                            <a href="#"> {{$order->name}} </a></p></li>
+                    <li>
+                    <li>
+                        <p class="no-margin"><strong>Client Contact:</strong>
+                            <a href="#">{{$order->contact}}</a> </p>
+                    </li>
+                    <li>
+                        <p class=" no-margin "><strong>Email
+                                Address:</strong>
+                            <a href="#">{{$order->email}}</a></p>
+                    </li>
+                    <li>
+                        <p class="no-margin"><strong>Location:</strong>
+                            <a href="#">{{$order->location}}</a></p>
+                    </li>
+                    <li>
+                        <p class="no-margin"><strong>Order Date:</strong>
+                            <a href="#">{{$order->created_at}}</a></p>
+                    </li>
+                    <li>
+                        <p class="no-margin"><strong>Order Details:</strong>
+                            <a href="#">{{$order->details}}</a></p>
+                    </li>
+                </ul>
+            </aside>
+            <div class="modal-footer">
+                <button type="button" class="btn-sm btn-danger pull-left"
+                        data-dismiss="modal">
+                    X
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
