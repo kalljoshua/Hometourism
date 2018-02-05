@@ -87,6 +87,10 @@ class BlogPostController extends Controller
             ->resize(99, 99)
             ->save(public_path().'/images/blog/admin_listing_99x99/'.$image_name);
 
+        Image::make($image_path)
+            ->resize(950, 750)
+            ->save(public_path().'/images/blog/listing_950x750/'.$image_name);
+
     }
 
     function edit($id){

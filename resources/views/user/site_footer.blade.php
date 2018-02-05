@@ -26,8 +26,9 @@
                         <div id="mc4wp-form-1" class="form mc4wp-form clearfix">
                             <p>Receive monthly cool ideas, inspiring stories,
                                 great reviews and offers.</p>
-                            <form method="post" class="clearfix">
-                                <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required="">
+                            <form action="/subscribe-to-newsletter" method="post" class="clearfix">
+                                {{ csrf_field() }}
+                                <input type="email" id="mc4wp_email" name="email" placeholder="Your email address" required="">
                                 <input type="submit" value="Submit">
                             </form>
                         </div>

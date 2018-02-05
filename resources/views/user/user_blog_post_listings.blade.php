@@ -1,57 +1,64 @@
 @extends('...layouts.user_layout')
 @section('title')
-  <title>e-NYUMBANI : Community Discussion</title>
+  <title>HomeTourism : Blog Listings</title>
 @endsection
 @section('content')
     <!--start section page body-->
-    <section id="section-body">
-
-        <!--start detail content-->
-        <section class="section-detail-content blog-page">
+    <div id="content" class="site-content">
+        <div id="tropical-banner" class=" text-center clearfix">
+            <img src="/assets/images/banner.jpg" alt="banner"/>
+            <div class="container banner-contents clearfix">
+                <h2 class="template-title p-name"><strong>Blog</strong></h2>
+            </div>
+            <div class="breadcrumb-wrapper clearfix">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li><a href="/" >Home</a></li>
+                        <li class="active">Blog</li>
+                    </ol>
+                </div>
+            </div>
+            <span class="overlay"></span>
+        </div>
+        @include('flash::message')
+        <section class="blog-page clearfix">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container-contentbar">
-                        <div class="article-main">
-                            @foreach($posts as $post)
-                                <article class="blog-article">
-                                    <div class="article-media">
-                                        <img src="/images/blog/user_810x400/{{$post->image}}" alt="Blog Image" width="810" height="400">
-                                    </div>
-                                    <div class="article-detail">
-                                        <h1>{{$post->title}}</h1>
-                                        <p>{!! str_limit($post->body, $limit = 250, $end = '...') !!}</p>
-                                    </div>
-                                    <div class="article-footer">
-
-                                        <ul class="author-meta">
-                                            <li>
-                                                <img src="/images/agents/contact_agent_74x74/{{$post->author->profile_picture}}" alt="Auther Image" width="40" height="40" class="meta-image">
-                                                by {{$post->author->username}}
-                                            </li>
-                                            <li><i class="fa fa-calendar"></i> {{ $post->created_at->format('M d,Y \a\t h:i a') }} </li>
-                                        </ul>
-
-                                        <div class="article-footer-right">
-                                            <a href="{{route('user.show.posts',['slug'=>$post->slug])}}" class="btn btn-primary">Read More</a>
-                                        </div>
-                                    </div>
-                                </article>
-                            @endforeach
-
-                            <hr>
-                            <!--start pagination-->
-                                <div class="text-center">
-                                    <?php echo $posts->render(); ?>
+                    <div class="col-md-9 col-sm-8">
+                        @foreach($posts as $post)
+                        <article class="blog-post animatedParent clearfix">
+                            <figure class="blog-feature-img text-center animated fadeInLeftShort">
+                                <a href="{{route('user.show.posts',['slug'=>$post->slug])}}">
+                                    <img src="/images/blog/user_810x400/{{$post->image}}" alt="Image"/></a>
+                            </figure>
+                            <div class="entry-contents animated fadeInRightShort clearfix">
+                                <h4 class="entry-title">
+                                    <a href="{{route('user.show.posts',['slug'=>$post->slug])}}">
+                                        t{{$post->title}}</a></h4>
+                                <p>{!! str_limit($post->body, $limit = 250, $end = '...') !!}</p>
+                                <div class="post-meta clearfix">
+                                    <span class="date pull-left"><i class="fa fa-clock-o"></i>
+                                        &nbsp; {{ $post->created_at->format('M d, Y \a\t h:i a') }}  &nbsp; | &nbsp; &nbsp;</span>
+                                    <span class="author pull-left">
+                                        <i class="fa fa-user"></i>&nbsp; By {{$post->author->username}}</span>
+                                    <span class="comment-count pull-right">{{$post->comments->count()}} Comments</span>
                                 </div>
-                            <!--end pagination-->
+                            </div>
+                            <a class="read-more animated rotateIn slow"
+                               href="{{route('user.show.posts',['slug'=>$post->slug])}}">
+                                <i class="fa fa-angle-right"></i></a>
+                        </article>
+                        @endforeach
+                        <div id="pagination" class="text-center animatedParent clearfix">
+                            <?php echo $posts->render(); ?>
                         </div>
                     </div>
-                    @include('users.right_bar')
+                    @include('user.right_bar')
                 </div>
             </div>
         </section>
-        <!--end detail content-->
 
-    </section>
-    <!--end section page body-->
+
+
+    </div><!-- .site-content -->
 @endsection

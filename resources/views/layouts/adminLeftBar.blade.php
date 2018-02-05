@@ -78,7 +78,7 @@
                 </ul>
             </li>
 
-            {{--<li class="treeview">
+            <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bookmark text-white"></i>
                     <span>Blog Posts</span>
@@ -92,7 +92,7 @@
                     <li><a href="{{route('admin.create.post.form')}}">
                             <i class="fa fa-circle-o"></i> New Blog Post</a></li>
                 </ul>
-            </li>--}}
+            </li>
 
             <li class="treeview">
                 <a href="#">
