@@ -24,7 +24,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Service Requests</h3>
+                            <h3 class="box-title">Home Requests</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -45,9 +45,10 @@
                                     <th>ID</th>
                                     <th>Date</th>
                                     <th>Name</th>
+                                    <th>Home Name</th>
                                     <th>Contact</th>
                                     <th>Email</th>
-                                    <th>Location</th>
+                                    <th>Preferred Location</th>
                                     <th>Message</th>
                                 </tr>
                                 <?php $i = 1; ?>
@@ -58,10 +59,11 @@
                                             <span class="label label-default">{{$request->created_at->format('M-d-Y')}}</span>
                                         </td>
                                         <td>{{ucwords($request->name)}}</td>
+                                        <td>{{ucwords($request->company->name)}}</td>
                                         <td style="text-transform: lowercase">{{$request->contact}}</td>
                                         <td style="text-transform: lowercase">{{$request->email}}</td>
                                         <td style="text-transform: lowercase">{{$request->location}}</td>
-                                        <td style="text-transform: lowercase">{{$request->details}}</td>
+                                        <td style="text-transform: lowercase">{{$request->expectations}}</td>
 
                                     </tr>
                                     <?php $i = $i + 1; ?>

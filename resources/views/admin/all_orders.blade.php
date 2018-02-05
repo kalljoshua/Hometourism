@@ -13,7 +13,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Service Orders</li>
+                <li class="active">Home Bookings</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -45,9 +45,10 @@
                                     <th>ID</th>
                                     <th>Date</th>
                                     <th>Name</th>
+                                    <th>Home Name</th>
                                     <th>Contact</th>
                                     <th>Email</th>
-                                    <th>Location</th>
+                                    <th>Preferred Location</th>
                                     <th>Message</th>
                                 </tr>
                                 <?php $i = 1; ?>
@@ -57,12 +58,12 @@
                                         <td>
                                             <span class="label label-default">{{$request->created_at->format('M-d-Y')}}</span>
                                         </td>
-                                        <td >{{ucwords($request->name)}}</td>
+                                        <td>{{ucwords($request->name)}}</td>
+                                        <td>{{ucwords($request->company->name)}}</td>
                                         <td style="text-transform: lowercase">{{$request->contact}}</td>
                                         <td style="text-transform: lowercase">{{$request->email}}</td>
                                         <td style="text-transform: lowercase">{{$request->location}}</td>
-                                        <td style="text-transform: lowercase">{{$request->details}}</td>
-
+                                        <td style="text-transform: lowercase">{{$request->expectations}}</td>
 
                                     </tr>
                                     <?php $i = $i + 1; ?>

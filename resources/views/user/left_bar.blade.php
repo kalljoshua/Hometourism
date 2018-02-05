@@ -146,35 +146,37 @@
 <div class="modal fade" id="modal-default-order">
     <div class="modal-dialog">
         <div class="modal-content">
-            <aside class="panel panel-body panel-details">
-                <ul>
+           <span class="text-center"><h4><b>Booking Details</b></h4></span>
+            <aside class="panel panel-body panel-details" style="padding-left: 70px">
 
-                    <li>
                         <p class="no-margin"><strong>Client Name:</strong>
                             <a href="#"> {{$order->name}} </a></p></li>
-                    <li>
-                    <li>
+
                         <p class="no-margin"><strong>Client Contact:</strong>
                             <a href="#">{{$order->contact}}</a> </p>
-                    </li>
-                    <li>
+
+                        <p class="no-margin"><strong>Client Age:</strong>
+                            <a href="#">{{$order->age}}</a> </p>
+
+                        <p class="no-margin"><strong>Period of Stay:</strong>
+                            <a href="#">{{$order->period}}</a> </p>
+
                         <p class=" no-margin "><strong>Email
                                 Address:</strong>
                             <a href="#">{{$order->email}}</a></p>
-                    </li>
-                    <li>
-                        <p class="no-margin"><strong>Location:</strong>
+
+                        <p class="no-margin"><strong>Number of Guests:</strong>
+                            <a href="#">{{$order->guests}}</a> </p>
+
+                        <p class="no-margin"><strong>Preferred Location:</strong>
                             <a href="#">{{$order->location}}</a></p>
-                    </li>
-                    <li>
+
                         <p class="no-margin"><strong>Order Date:</strong>
                             <a href="#">{{$order->created_at}}</a></p>
-                    </li>
-                    <li>
-                        <p class="no-margin"><strong>Order Details:</strong>
-                            <a href="#">{{$order->details}}</a></p>
-                    </li>
-                </ul>
+
+                        <p class="no-margin"><strong>Expectations:</strong>
+                            <a href="#">{{$order->expectations}}</a></p>
+
             </aside>
             <div class="modal-footer">
                 <button type="button" class="btn-sm btn-danger pull-left"

@@ -43,7 +43,7 @@ class ServiceRequestsController extends Controller
                 flash('Your request has successfully been sent')->success();
                 return redirect(route('company.details', ['slug' => $slug]));
             }else{
-                flash('Your Order has successfully been sent')->success();
+                flash('Your Booking has successfully been sent')->success();
                 return redirect(route('company.details', ['slug' => $slug]));
             }
 
@@ -52,7 +52,7 @@ class ServiceRequestsController extends Controller
                 flash('Failed to send Request')->error();
                 return redirect(route('company.details', ['slug' => $slug]));
             }else{
-                flash('Failed to send Order')->error();
+                flash('Failed to send Booking')->error();
                 return redirect(route('company.details', ['slug' => $slug]));
             }
         }

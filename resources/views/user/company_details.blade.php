@@ -27,14 +27,17 @@
                 <div class="row">
                     <div class="col-lg-9 col-sm-8">
                         <header class="entry-header animatedParent clearfix">
-                            <h3 class="pull-left tour-single-title animated growIn slower">{{$company->name}}</h3>
-                            <span class="tour-price-single pull-right animated growIn slower">
+                            <h4 class="pull-left tour-single-title animated growIn slower">{{$company->name}}</h4>
+                            <span class="pull-left" style="color: #FDC600; font-size: 16px"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Views ({{$company->views}})</span>
+                            <span class="tour-price-single pull-right animated growIn slower" style="color: #FDC600">
                                @for ($k=1; $k <= 5 ; $k++)
                                     <span data-title="Average Rate: 5 / 5"
                                           class="bottom-ratings tip">
                                                         <span class="glyphicon glyphicon-star{{ ($k <= $company->rating) ? '' : '-empty'}}"></span>
                                                             </span>
                                 @endfor
+                                ({{$company->rating}})
                             </span>
                         </header>
                         <article class="tour-post-single clearfix">

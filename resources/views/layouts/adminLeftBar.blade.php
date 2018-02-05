@@ -8,7 +8,7 @@
                 <img src="/admin_inc/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{Auth::guard('admin')->user()->firtname}} {{Auth::guard('admin')->user()->lastname}}</p>
+                <p>{{Auth::guard('admin')->user()->name}}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     <i class="fa fa-dashboard text-blue"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="treeview">
+            {{--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o text-green"></i>
                     <span>Services</span>
@@ -42,22 +42,22 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('admin.all.services')}}"><i class="fa fa-circle-o"></i> All Services</a></li>
-                    {{--<li><a href="{{route('admin.suspended.services')}}"><i class="fa fa-circle-o"></i> Suspended</a></li>
+                    --}}{{--<li><a href="{{route('admin.suspended.services')}}"><i class="fa fa-circle-o"></i> Suspended</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Expired</a></li>
-                    <li><a href="{{route('admin.pending.services')}}"><i class="fa fa-circle-o"></i> Pending</a></li>--}}
+                    <li><a href="{{route('admin.pending.services')}}"><i class="fa fa-circle-o"></i> Pending</a></li>--}}{{--
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-files-o text-green"></i>
-                    <span>Companies</span>
+                    <span>Host Homes</span>
                     <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('admin.all.companies')}}"><i class="fa fa-circle-o"></i> All Companies</a></li>
+                    <li><a href="{{route('admin.all.companies')}}"><i class="fa fa-circle-o"></i> All Homes</a></li>
                     <li><a href="{{route('admin.pending.companies')}}"><i class="fa fa-circle-o"></i> Pending</a></li>
                     <li><a href="{{route('admin.suspended.companies')}}"><i class="fa fa-circle-o"></i> Suspended</a>
                     </li>
@@ -78,7 +78,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            {{--<li class="treeview">
                 <a href="#">
                     <i class="fa fa-bookmark text-white"></i>
                     <span>Blog Posts</span>
@@ -92,7 +92,7 @@
                     <li><a href="{{route('admin.create.post.form')}}">
                             <i class="fa fa-circle-o"></i> New Blog Post</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
             <li class="treeview">
                 <a href="#">
@@ -151,35 +151,6 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('admin.all.types')}}"><i class="fa fa-circle-o"></i> All Types</a></li>
                     <li><a href="{{route('admin.new.type')}}"><i class="fa fa-circle-o"></i> New Type</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-server text-red"></i>
-                    <span>Categories</span>
-                    <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('admin.all.categories')}}"><i class="fa fa-circle-o"></i> All Categories</a>
-                    </li>
-                    <li><a href="{{route('admin.new.category')}}"><i class="fa fa-circle-o"></i> New Category</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-reorder text-aqua"></i>
-                    <span>Sub-Categories</span>
-                    <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('admin.all.subcategories')}}"><i class="fa fa-circle-o"></i> All Sub-Categories</a>
-                    </li>
-                    <li><a href="{{route('admin.new.subcategory')}}"><i class="fa fa-circle-o"></i> New Sub-Category</a>
-                    </li>
                 </ul>
             </li>
             <li><a href="/"><i class="fa fa-home text-aqua"></i> <span>Home Page</span></a></li>
