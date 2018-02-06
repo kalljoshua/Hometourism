@@ -1605,7 +1605,8 @@ h5 {
 }
 .tour-price {
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 500;
 }
 .tour-price-off {
     background: #fc4242;

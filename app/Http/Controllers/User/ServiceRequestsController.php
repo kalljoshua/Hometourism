@@ -16,7 +16,6 @@ class ServiceRequestsController extends Controller
     {
         $requests = new ServiceRequest();
         if(Input::has('service_id')) $requests->company_id = Input::get('service_id');
-        if(Input::has('slug')) $slug = Input::get('slug');
         if(Input::has('location')) $requests->location = Input::get('location');
         if(Input::has('type')) $requests->type = Input::get('type');
         if(Input::has('age')) $requests->age = Input::get('age');
@@ -41,19 +40,19 @@ class ServiceRequestsController extends Controller
         if($requests->save()){
             if(Input::get('type')==2) {
                 flash('Your request has successfully been sent')->success();
-                return redirect(route('company.details', ['slug' => $slug]));
+                return redirect()->back();
             }else{
                 flash('Your Booking has successfully been sent')->success();
-                return redirect(route('company.details', ['slug' => $slug]));
+                return redirect()->back();
             }
 
         }else{
             if(Input::get('type')==2) {
                 flash('Failed to send Request')->error();
-                return redirect(route('company.details', ['slug' => $slug]));
+                return redirect()->back();
             }else{
                 flash('Failed to send Booking')->error();
-                return redirect(route('company.details', ['slug' => $slug]));
+                return redirect()->back();
             }
         }
 

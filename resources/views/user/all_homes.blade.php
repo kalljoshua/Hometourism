@@ -1,19 +1,19 @@
 @extends('...layouts.user_layout')
 @section('title')
-    <title>HomeTourism : Search Results</title>
+    <title>HomeTourism : All Homes</title>
 @endsection
 @section('content')
     <div id="content" class="site-content">
         <div id="tropical-banner" class=" text-center clearfix">
             <img src="/assets/images/banner.jpg" alt="banner"/>
             <div class="container banner-contents clearfix">
-                <h2 class="template-title p-name"><strong>Search Results</strong></h2>
+                <h2 class="template-title p-name"><strong>All Host Homes</strong></h2>
             </div>
             <div class="breadcrumb-wrapper clearfix">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li><a href="/" >Home</a></li>
-                        <li class="active">Search Results</li>
+                        <li class="active">Host Homes</li>
                     </ol>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                             </div>
                         @else
                             <div class="text-center" style="margin-top:50px">
-                                <h3>No Homes available from your search!</h3>
+                                <h3>No Homes available on the server!</h3>
                             </div>
                         @endif
                         <div id="pagination" class="text-center animatedParent clearfix">

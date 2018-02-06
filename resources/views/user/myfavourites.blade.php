@@ -43,16 +43,16 @@
                                     <div class="tour-item col-md-4 col-sm-6 animatedParent">
                                         <article class="tour-post animated fadeInDownShort">
                                             <header class="tour-post-header clearfix">
-                                                <span class="tour-price pull-left">UGx {{money_format("%.2n",$company->price)}}</span>
+                                                <span class="tour-price pull-left">UGX {{number_format($company->price)}}</span>
                                                 <span class="tour-days pull-right" style="color: #FDC600">
-                                     @for ($k=1; $k <= 5 ; $k++)
+                                                    @for ($k=1; $k <= 5 ; $k++)
                                                         <span data-title="Average Rate: 5 / 5"
                                                               class="bottom-ratings tip">
                                                         <span class="glyphicon glyphicon-star{{ ($k <= $company->rating) ? '' : '-empty'}}"></span>
                                                             </span>
                                                     @endfor
                                                     ({{$company->rating}})
-                                    </span>
+                                                </span>
                                             </header>
                                             <div class="tour-contents clearfix">
                                                 <figure class="tour-feature-img">

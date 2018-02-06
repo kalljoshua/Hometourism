@@ -73,16 +73,16 @@
                                     <span><i class="fa fa-clock-o"></i><strong>Duration : &nbsp;
                                         </strong>{{$company->created_at}}</span>
                                     <span><i class="fa fa-tags"></i><strong>Price : &nbsp;
-                                        </strong>UGx {{money_format("%.2n",$company->price)}}</span>
+                                        </strong>UGX {{number_format($company->price)}}</span>
                                 </div>
                                 <p> {{$company->description}}</p>
                                 <footer class="tour-contents-footer clearfix">
                                     @if(Auth::guard('user')->user() )
                                     <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
-                                       data-target="#booking-popup">Booking Now</a>
+                                       data-target="#booking-popup">BOOK THIS HOMEw</a>
                                     @else
                                         <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
-                                           data-target="#booking-popup">Request Home</a>
+                                           data-target="#booking-popup">REQUEST A HOST HOME</a>
                                     @endif
                                     <div class="modal fade" id="booking-popup" tabindex="-1" role="dialog"
                                          aria-labelledby="booking-popup" aria-hidden="true">
@@ -358,14 +358,23 @@
                                     <article class="tour-post animated fadeInRightShort">
                                         <header class="tour-post-header clearfix">
                                             <span class="tour-price pull-left">
-                                                UGx {{money_format("%.2n",$related->price)}}</span>
-                                            <span class="tour-days pull-right"><i class="fa fa-clock-o"></i>&nbsp; rating</span>
+                                                UGX {{number_format($related->price)}}</span>
+                                            <span class="tour-days pull-right" style="color: #FDC600">
+                                                    @for ($k=1; $k <= 5 ; $k++)
+                                                    <span data-title="Average Rate: 5 / 5"
+                                                          class="bottom-ratings tip">
+                                                        <span class="glyphicon glyphicon-star{{ ($k <= $related->rating) ? '' : '-empty'}}"></span>
+                                                            </span>
+                                                @endfor
+                                                ({{$related->rating}})
+                                                </span>
                                         </header>
                                         <div class="tour-contents clearfix">
                                             <figure class="tour-feature-img">
                                                 <img src="/images/services/single_service_1170x600/{{$related->image}}" alt="Image"/>
                                             </figure>
                                             <h5 class="entry-title p-name">{{$related->name}}</h5>
+                                            <span class="pull-left" style="color: #fd0b31">views ({{$related->views}})</span>
                                             <a class="more-details u-url" href="/{{$related->slug}}">
                                                 See home details <i class="dashicons dashicons-arrow-right-alt2"></i></a>
                                         </div>

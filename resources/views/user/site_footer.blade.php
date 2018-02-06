@@ -1,3 +1,4 @@
+
 <footer id="colophon" class="site-footer animatedParent" role="contentinfo">
     <div class="footer-wrapper clearfix">
         <div class="container">
@@ -10,7 +11,7 @@
                             <li class="page_item page-item-19">
                                 <a href="{{route('user.about')}}">About Us</a></li>
                             <li class="page_item page-item-7">
-                                <a href="home-var-two.html#">Contacts</a></li>
+                                <a href="{{route('user.about')}}">Contacts</a></li>
                             <li class="page_item page-item-32">
                                 <a href="{{route('services.all')}}">Host Homes</a></li>
                             <li class="page_item page-item-12">
@@ -58,7 +59,7 @@
     </div>
     <div class="site-info animated pulse col-md-12" style="background-color: black">
                 <div class="pull-left col-sm-8" style="background-color: black">
-                    <p>Copyright © <?php echo date('Y');?> Reserved by- Shatsi Group LTD.</p>
+                    <p>© <?php echo date('Y');?> - Shatsi Host Homes.</p>
                 </div>
                 <div class="pull-right col-sm-4" style="background-color: black">
                     <a href="{{route('user.termsofUse')}}">Terms of Use</a>
@@ -67,3 +68,5 @@
                 </div>
     </div><!-- .site-info -->
 </footer><!-- .site-footer -->
+
+@include('layouts.countries')

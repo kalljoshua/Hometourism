@@ -1,93 +1,67 @@
 @extends('...layouts.user_layout')
 @section('title')
-  <title>e-NYUMBANI : About Us</title>
+    <title>HomeTourism : ABOUT SHATSI HOST HOMES</title>
 @endsection
 @section('content')
 
-<!--start section page body-->
-<section id="section-body">
-    <div class="container">
-        <div class="page-title breadcrumb-top">
-            <div class="row">
-                <div class="col-sm-12">
+    <div id="content" class="site-content">
+        <div id="tropical-banner" class=" text-center clearfix">
+            <img src="/assets/images/banner.jpg" alt="banner"/>
+            <div class="container banner-contents clearfix">
+                <h2 class="template-title p-name"><strong>ABOUT SHATSI HOST HOMES</strong></h2>
+            </div>
+            <div class="breadcrumb-wrapper clearfix">
+                <div class="container">
                     <ol class="breadcrumb">
-                        <li><a href="/"><i class="fa fa-home"></i></a></li>
-                        <li class="active">About e-NYUMBANI</li>
+                        <li><a href="/" >Home</a></li>
+                        <li class="active">ABOUT SHATSI HOST HOMES</li>
                     </ol>
-                    <div class="page-title-left">
-                        <h2>About e-NYUMBANI</h2>
-                    </div>
                 </div>
             </div>
+            <span class="overlay"></span>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container-contentbar">
-                <div class="page-main">
-                    <div class="article-detail">
-                        <p><strong>
-                          The word "Nyumbani" is a swahili word meaning "HOME".</strong> <br/> e-Nyumbani is the online platform that helps rent, sell or buy property online everywhere anytime!
-                          Founded in September of 2017 and based in Kampala, Uganda, e-Nyumbani is a trusted community marketplace for people to list, sell, buy, rent and discuss Real Estate in Uganda — online from a mobile phone or tablet.
-                          Whether you want an apartment, a or house, or a villa for a month, or a single room or a plot of land, e-Nyumbani connects you to the right property owners and agents.
+        @include('flash::message')
+        <section class="blog-single clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-sm-8">
+                        <article class="blog-post">
 
-                        </p>
-                        <hr>
-                        <h3>Meet our team</h3>
+                            <div class="entry-contents animatedParent clearfix">
+                                <h4 class="entry-title animated fadeInUpShort">
+                                    <a href="#">ABOUT SHATSI HOST HOMES</a></h4>
+                                <p class="animated fadeInUpShort">
+                                    Shatsi Host Homes is an online market place where you can Search and Rent
+                                    a homes for temporally accommodation during tour or study trips, vacations, or honeymoons.</p>
+                                    <p>No matter what kind of home or room you have to share, Shatsi Host Homes
+                                        makes it simple and secure to earn money and reach millions of travelers
+                                        looking for unique places to stay, just like yours.</p>
+                                    <p>With Shatsi Host Homes, you’re in full control of your availability,
+                                        prices, house rules, and how you interact with guests.
+                                        You can set check-in times and handle the process however you like.</p>
+                                    <p>Shatsi Host Homes offers tools, hospitality tips, 24/7 support, and an online
+                                        community of experienced hosts for questions and sharing ideas for success.
+                                    Shatsi Host Homes is a Company of Shatsi Group LTD
+                                </p>
 
-                        <div class="about-team-main">
-                            <div class="row">
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="about-team-block">
-                                        <figure>
-                                            <img class="aligncenter" src="/uploads/Nakana.png" alt="agent-3" width="300" height="300">
-                                            <div>
-                                                <strong>Nakana Joshua</strong><br>
-                                                Co-Founder/C.E.O
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="about-team-block">
-                                        <figure>
-                                            <img class="aligncenter" src="/uploads/Moses.png" alt="agent-3" width="300" height="300">
-                                            <div>
-                                                <strong>Moses Ruraara</strong><br>
-                                                Co-founder/C.O.O
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="about-team-block">
-                                        <figure>
-                                            <img class="aligncenter" src="/uploads/Nabuka.png" alt="agent-3" width="300" height="300">
-                                            <div>
-                                                <strong>Nabuka Joshua</strong><br>
-                                                Lead Developer/C.T.O
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="about-team-block">
-                                        <figure>
-                                            <img class="aligncenter" src="/uploads/Akena.png" alt="agent-3" width="300" height="300">
-                                            <div>
-                                                <strong>Akena Kenedy</strong><br>
-                                                Lead Developer
-                                            </div>
-                                        </figure>
-                                    </div>
-                                </div>
+                                <h4>CONTACTS</h4>
+
+                                <p>Email: info@shatsi.com</p>
+                                <p>Mobile: +256-775745803</p>
+                                <p>WhatsApp: +256-779641269</p>
+                                <p>Location: Plot 1-2 Jobiah Road Mukono Kampala Uganda.</p>
+
                             </div>
-                        </div>
+                        </article>
+
 
                     </div>
+                    @include('user.right_bar')
                 </div>
             </div>
-            @include('users.right_bar')
-        </div>
-    </div>
-</section>
-<!--end section page body-->
+        </section>
+
+
+
+    </div><!-- .site-content -->
 @endsection

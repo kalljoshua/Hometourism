@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <link rel="stylesheet" href="/assets/css/weather.css" type="text/css" media="all">
-
+    @include('flash::message')
     <div class="main-slider-wrap">
         <div class="main-slider">
             <div class="item">
@@ -29,36 +29,35 @@
                 </div>
             </div>
         </div>
-        <form id="adv-search" action="home-var-two.html#">
+        <form id="adv-search" method="get" action="{{route('users.search')}}">
             <div class="container">
                 <fieldset>
                     <legend><span>Find A Host</span></legend>
                     <div class="form-wrap clearfix">
-                        <select class="form-control" id="places" >
-                            <option>Uganda</option>
-                            <option>Kenya</option>
-                            <option>Tanzania</option>
-                            <option>Rwanda</option>
-                            <option>Burundi</option>
-                            <option>South Sudan</option>
+                        <div class="input-group" >
+                            <input type="text" class="form-control" list="countries" name="country"
+                            placeholder="Select Country">
+                            <span class="input-group-addon add-on"><i class="fa fa-globe"></i></span>
+                        </div>
+                        <select class="form-control" id="type" name="type" >
+                            <option value="">TYPE</option>
+                            @foreach(App\Type::all() as $type)
+                                <option value="{{$type->id}}">{{$type->name}}</option>
+                            @endforeach
+                        </select>
+                        <select class="form-control" id="budget" name="budget" >
+                            <option value="">MAX-BUDGET</option>
+                            <option value="300">$300</option>
+                            <option value="400">$400</option>
+                            <option value="500">$500</option>
+                            <option value="600">$600</option>
+                        </select>
+                        <div class="input-group" >
+                            <input type="text" class="form-control" name="keyword" placeholder="Key Words" >
+                            <span class="input-group-addon add-on"><i class="fa fa-search"></i></span>
+                        </div>
 
-                        </select>
-                        <div class="input-group input-append date date-picker" >
-                            <input type="text" class="form-control" name="date" value="CHECK-IN DATE">
-                            <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-                        </div>
-                        <div class="input-group input-append date date-picker" >
-                            <input type="text" class="form-control" name="date" value="CHECK-OUT DATE">
-                            <span class="input-group-addon add-on"><i class="fa fa-calendar"></i></span>
-                        </div>
-                        <select class="form-control" id="budget" >
-                            <option>MAX-BUDGET</option>
-                            <option>$300</option>
-                            <option>$400</option>
-                            <option>$500</option>
-                            <option>$600</option>
-                        </select>
-                        <input name="search-tour" type="submit" value="Search Tours">
+                        <input name="search-tour" type="submit" value="Search Homes">
                     </div>
 
                 </fieldset>
@@ -70,14 +69,14 @@
         <div class="container">
             <header class="section-header header-with-nav clearfix">
                 <h3 class="title pull-left animated growIn">FEATURED HOMES</h3>
-                <a class="pull-right animated growIn" href="index.html#">see more offers</a>
+                <a class="pull-right animated growIn" href="{{route('services.all')}}">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
                 @foreach($featured_services as $featured)
                 <article class="tour-post">
                     <i class="circle-icon"></i>
                     <header class="tour-post-header clearfix">
-                        <span class="tour-price pull-left">UGx {{money_format("%.2n",$featured->price)}}</span>
+                        <span class="tour-price pull-left">UGX {{number_format($featured->price)}}</span>
                         <span class="tour-price-off-h pull-right">
                          @for ($k=1; $k <= 5 ; $k++)
                                 <span data-title="Average Rate: 5 / 5"
@@ -111,14 +110,14 @@
         <div class="container">
             <header class="section-header header-with-nav clearfix">
                 <h3 class="title pull-left animated growIn">MOST VIEWED HOMES</h3>
-                <a class="pull-right animated growIn" href="index.html#">see more offers</a>
+                <a class="pull-right animated growIn" href="{{route('services.all')}}">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
                 @foreach($most_viewed_services as $most_viewed)
                     <article class="tour-post">
                         <i class="circle-icon"></i>
                         <header class="tour-post-header clearfix">
-                            <span class="tour-price pull-left">UGx {{money_format("%.2n",$most_viewed->price)}}</span>
+                            <span class="tour-price pull-left">UGX {{number_format($most_viewed->price)}}</span>
                             <span class="tour-price-off-h pull-right">
                          @for ($k=1; $k <= 5 ; $k++)
                                     <span data-title="Average Rate: 5 / 5"
@@ -151,14 +150,14 @@
         <div class="container">
             <header class="section-header header-with-nav clearfix">
                 <h3 class="title pull-left animated growIn">RECENTLY ADDED HOMES</h3>
-                <a class="pull-right animated growIn" href="index.html#">see more offers</a>
+                <a class="pull-right animated growIn" href="{{route('services.all')}}">see more offers</a>
             </header>
             <div class="tour-carousel animated flipInX clearfix">
                 @foreach($recent_services as $recent)
                     <article class="tour-post">
                         <i class="circle-icon"></i>
                         <header class="tour-post-header clearfix">
-                            <span class="tour-price pull-left">UGx {{money_format("%.2n",$recent->price)}}</span>
+                            <span class="tour-price pull-left">UGX {{number_format($recent->price)}}</span>
                             <span class="tour-price-off-h pull-right">
                          @for ($k=1; $k <= 5 ; $k++)
                                     <span data-title="Average Rate: 5 / 5"
@@ -298,6 +297,106 @@
             </div>
         </div>
     </section>
+
+    <div class="modal fade" id="booking-popup" tabindex="-1" role="dialog"
+         aria-labelledby="booking-popup" aria-hidden="true">
+        <div class="modal-dialog">
+            <form method="post" action="{{route('submit.request')}}">
+                {{ csrf_field() }}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    @if(Auth::guard('user')->user() )
+                        <h4 class="modal-title">Book this Home</h4>
+                        <input name="type" value="1" type="hidden"/>
+                    @else
+                        <h4 class="modal-title">Request this Home</h4>
+                        <input name="type" value="2" type="hidden"/>
+                    @endif
+                </div>
+                <div class="modal-body col-md-12">
+                    @if(!Auth::guard('user')->user() )
+                        <div class="form-group">
+                            <div class="input-icon">
+                                <input name="name" class="form-control"
+                                       placeholder="Your Full Name" type="text" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-icon">
+                                <input name="contact" class="form-control"
+                                       placeholder="Your Contact" type="text" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-icon">
+                                <input name="email" class="form-control"
+                                       placeholder="Your Email Address" type="text" required/>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="age" class="form-control"
+                                   placeholder="How old are you?" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <select name="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="guests" class="form-control"
+                                   placeholder="Number of Guests" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="profession" class="form-control"
+                                   placeholder="Your Profession" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="period" class="form-control"
+                                   placeholder="Period of Stay" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                            <input name="service_id" value="0" type="hidden"/>
+
+                            <input name="location" class="form-control"
+                                   placeholder="Preferred  location" type="text" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-icon">
+                         <textarea rows="3" class="form-control" name="expectations"
+                            placeholder="Enter request info" type="text">Detailed Expectations....
+                           </textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-sm btn-warning pull-left"
+                            data-dismiss="modal">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <input type="submit" class="btn-sm btn-primary" value="Submit">
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 
 
 @endsection

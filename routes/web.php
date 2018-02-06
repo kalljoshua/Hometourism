@@ -55,7 +55,7 @@ Route::get('blog/{slug}', 'User\BlogPostController@showPost')->name('user.show.p
 Route::post('comment', 'User\BlogPostController@postComment')->name('user.comment.submit');
 
 //service routes
-Route::get('/services', 'User\ServiceController@getAll')->name('services.all');
+Route::get('/host-homes', 'User\ServiceController@getAll')->name('services.all');
 Route::get('/homes/{id}', 'User\CompanyController@getCategory')->name('services.category');
 Route::get('/services/{id}/details', 'User\HomeController@adsDetails')->name('services.details');
 
