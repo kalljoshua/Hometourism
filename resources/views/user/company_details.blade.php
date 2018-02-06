@@ -351,7 +351,6 @@
                         <div class="related-tours clearfix">
                             <header class="header-with-nav animatedParent clearfix">
                                 <h3 class="title pull-left animated growIn slower">Related Homes</h3>
-                                <a class="pull-right animated growIn slower" href="/homes/{{$related->type_id}}">SEE All Tours</a>
                             </header>
                             <div class="row">
                                 @foreach($related_homes as $related)

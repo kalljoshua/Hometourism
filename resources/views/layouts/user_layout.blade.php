@@ -63,13 +63,57 @@
 <script type="text/javascript" src="/assets/js/css3-animate-it.js"></script>
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="/assets/js/tropical.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap-select.min.js"></script>
 <script type="text/javascript" src="/assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 
 <script src="/assets/js/form-components.js"></script>
 <script language="javascript" type="text/javascript" src="/js/starrr.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var mapOptions = {
+            center: new google.maps.LatLng(0.3121065,32.582237),
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var infoWindow = new google.maps.InfoWindow();
+        var latlngbounds = new google.maps.LatLngBounds();
+        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+        google.maps.event.addListener(map, 'click', function (e) {
+            loadWeather(e.latLng.lat()+','+e.latLng.lng());
+            //load weather using your lat/lng coordinates
+        });
+
+        $(document).ready(function() {
+            loadWeather('Kampala',''); //@params location, woeid
+        });
+
+        function loadWeather(location, woeid) {
+            $.simpleWeather({
+                location: location,
+                woeid: woeid,
+                unit: 'f',
+                success: function(weather) {
+                    html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+                    html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+                    html += '<li class="currently">'+weather.currently+'</li>';
+                    html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+
+                    html += '<ul><li> Pressure: '+weather.pressure+' '+weather.units.pressure+'</li>';
+                    html += '<li class="currently">High: '+weather.low+'&deg;'+weather.units.temp+'</li>';
+                    html += '<li>Low: '+weather.high+'&deg;'+weather.units.temp+'</li></ul>';
+
+                    $("#weather").html(html);
+                },
+                error: function(error) {
+                    $("#weather").html('<p>'+error+'</p>');
+                }
+            });
+        }
+    }
+</script>
 
 <script>
     $('div.alert').not('.alert-important').delay(2000).fadeOut(1500);
@@ -162,6 +206,8 @@
     });
 
 </script>
+
+
 
 </body>
 </html>

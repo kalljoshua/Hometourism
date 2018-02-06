@@ -3,37 +3,45 @@
   <title>HomeTourism : Home</title>
 @endsection
 @section('content')
+    <link rel="stylesheet" href="/assets/css/weather.css" type="text/css" media="all">
 
     <div class="main-slider-wrap">
         <div class="main-slider">
             <div class="item">
                 <img src="/assets/images/slide1.jpg" alt="one"/>
                 <div class="slide-details clearfix">
-                    <h3 class="title"><span>Have adventure trip with</span><span> tropical </span></h3>
+                    <h3 class="title"><span>Make Extra Money from Your Home Space</span>
+                        <span>With Shatsi Host Homes.</span></h3>
                 </div>
             </div>
             <div class="item">
                 <img src="/assets/images/slide2.jpg" alt="one"/>
                 <div class="slide-details clearfix">
-                    <h3 class="title"><span>Have adventure trip with</span><span> tropical </span></h3>
+                    <h3 class="title"><span>Make Extra Money from Your Home Space</span>
+                        <span>With Shatsi Host Homes.</span></h3>
                 </div>
             </div>
             <div class="item">
                 <img src="/assets/images/slide3.jpg" alt="one"/>
                 <div class="slide-details clearfix">
-                    <h3 class="title"><span>Have adventure trip with</span><span> tropical </span></h3>
+                    <h3 class="title"><span>Make Extra Money from Your Home Space</span>
+                        <span>With Shatsi Host Homes.</span></h3>
                 </div>
             </div>
-        </div><form id="adv-search" action="home-var-two.html#">
+        </div>
+        <form id="adv-search" action="home-var-two.html#">
             <div class="container">
                 <fieldset>
-                    <legend><span>Find the Tour</span></legend>
+                    <legend><span>Find A Host</span></legend>
                     <div class="form-wrap clearfix">
                         <select class="form-control" id="places" >
-                            <option>Africa</option>
-                            <option>India</option>
-                            <option>America</option>
-                            <option>Russia</option>
+                            <option>Uganda</option>
+                            <option>Kenya</option>
+                            <option>Tanzania</option>
+                            <option>Rwanda</option>
+                            <option>Burundi</option>
+                            <option>South Sudan</option>
+
                         </select>
                         <div class="input-group input-append date date-picker" >
                             <input type="text" class="form-control" name="date" value="CHECK-IN DATE">
@@ -207,57 +215,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="weather-table animated flipInX slower">
-                        <ul class="first clearfix">
-                            <li>spring (sept-nov) <span class="circle-icon"></span></li>
-                            <li>
-                                <ul class="clearfix">
-                                    <li>Average Min <span class="circle-icon"></span></li>
-                                    <li>18 C <span class="circle-icon"></span></li>
-                                    <li>64 F</li>
-                                </ul>
-                                <ul class="clearfix">
-                                    <li>Average Min</li>
-                                    <li>18 C</li>
-                                    <li>64 F</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="clearfix">
-                            <li>spring (sept-nov)</li>
-                            <li>
-                                <ul class="clearfix">
-                                    <li>Average Min</li>
-                                    <li>18 C</li>
-                                    <li>64 F</li>
-                                </ul>
-                                <ul class="clearfix">
-                                    <li>Average Min</li>
-                                    <li>18 C</li>
-                                    <li>64 F</li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="clearfix">
-                            <li>spring (sept-nov)</li>
-                            <li>
-                                <ul class="clearfix">
-                                    <li>Average Min</li>
-                                    <li>18 C</li>
-                                    <li>64 F</li>
-                                </ul>
-                                <ul class="clearfix">
-                                    <li>Average Min</li>
-                                    <li>18 C</li>
-                                    <li>64 F</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <div id="weather"></div>
                     </div>
 
                 </div>
                 <div class="col-sm-6">
                     <div class="location-map-wrap animated flipInX slower clearfix">
-                        <div id="location-map"></div>
+                        <div id="dvMap" style="width: 100%; height: 400px"></div>
                     </div>
 
                 </div>
@@ -334,6 +298,7 @@
             </div>
         </div>
     </section>
+
 
 @endsection
 
