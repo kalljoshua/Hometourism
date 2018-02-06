@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Font Styles -->
-    <link href='http://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 
     <!--Stylesheets -->
@@ -68,9 +68,11 @@
 <script type="text/javascript" src="/assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 
 <script src="/assets/js/form-components.js"></script>
+{{--<script src="/assets/js/maps.js"></script>--}}
 <script language="javascript" type="text/javascript" src="/js/starrr.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjFuJk-Zshqzlhbrq9UyzNimehnm480oM&callback=initMap"
+        type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         var mapOptions = {
