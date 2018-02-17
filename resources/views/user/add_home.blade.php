@@ -50,7 +50,8 @@
                                 </p>
                                 <p class="form-name">
                                     <label for="lname">Price/Cost <span class="required">*</span></label>
-                                    <input id="lname" name="price" type="text" value="" required="required">
+                                    <input id="lname" placeholder="Price in USD" name="price" type="text" value=""
+                                           required="required">
                                 </p>
                                 <p class="form-email">
                                     <label for="email">Number Of Rooms <span class="required">*</span></label>
@@ -73,7 +74,10 @@
                                     </select>
                                 </p>
 
-
+                                <p class="form-name">
+                                    <label for="lname">Country <span class="required">*</span></label>
+                                    <input id="lname" name="country" list="countries" type="text" value="" required="required">
+                                </p>
                                 <p class="form-comment">
                                     <label for="comment">Description</label>
                                     <textarea id="comment" name="description" cols="45" rows="5"></textarea>
@@ -196,6 +200,26 @@
                                         <label for="d7"><span></span>Swamp</label>
                                     </li>
                                 </ul>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label for="description">More Features</label>
+                                            <div class="input-group">
+                                                <input type="text" name="more_features[]" id="ContactNo" class="form-control"
+                                                       placeholder="Enter more features">
+                                                <span class="input-group-btn add_field_button">
+                                                                    <button class="btn btn-info" type="button">+</button>
+                                                               </span>
+                                            </div>
+                                            <div class="input_fields_wrap">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </fieldset>
 
                             <div class="col-md-3 col-sm-4 pull-right">

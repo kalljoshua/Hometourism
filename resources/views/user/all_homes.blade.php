@@ -31,7 +31,7 @@
                                     <div class="col-md-4 col-xs-6 animatedParent">
                                         <article class="tour-post animated fadeInUpShort">
                                             <header class="tour-post-header clearfix">
-                                                <span class="tour-price pull-left">UGX {{number_format($service->price)}}</span>
+                                                <span class="tour-price pull-left">$ {{number_format($service->price)}}</span>
                                                 <span class="tour-days pull-right" style="color: #FDC600">
                                                     @for ($k=1; $k <= 5 ; $k++)
                                                         <span data-title="Average Rate: 5 / 5"

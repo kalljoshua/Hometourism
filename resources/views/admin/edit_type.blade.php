@@ -1,6 +1,6 @@
 @extends('layouts.adminLayout')
 @section('title')
-    <title>Service Hunt Admin : Edit Types</title>
+    <title>HomeTourism Admin : Edit Types</title>
 @endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->

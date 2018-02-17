@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Service;
+use App\HomeFeature;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -86,43 +86,52 @@ class CompanyController extends Controller
         $company = Company::where('slug',$name)->first();
         //return $company->sub_category;
         //$user_id = Auth::guard('user')->id();
-        $categories = Category::all();
-        $sub_categories = SubCategory::all();
+        /*$categories = Category::all();
+        $sub_categories = SubCategory::all();*/
         $types = Type::all();
-        return view('user.edit_company')
+        return view('user.edit_home')
             ->with('company',$company)
-            ->with('types',$types)
-            ->with('categories',$categories)
-            ->with('sub_categories',$sub_categories);
+            ->with('types',$types);
+            /*->with('categories',$categories)
+            ->with('sub_categories',$sub_categories);*/
     }
 
     function submitEdit(Request $request)
     {
         if ($request->id) $id = $request->id;
         $company = Company::find($id);
-        $services = array_filter($request->service);
 
         ini_set('memory_limit', '256M');
         ini_set('max_execution_time', 600);
+        $services = array_filter($request->more_features);
 
 
-        if (Input::has('name')) $company->name = Input::get('name');
-        if (Input::has('description')) $company->description = Input::get('description');
-        if (Input::has('district')) $company->district = Input::get('district');
-        if (Input::has('telephone')) $company->telephone = Input::get('telephone');
-        if (Input::has('email')) $company->email = Input::get('email');
-        if (Input::has('type_id')) $company->type_id = Input::get('type_id');
-        if (Input::has('company_id')) $company->company_id = Input::get('company_id');
-        if (Input::has('sub_category_id')) $company->sub_category_id = Input::get('sub_category_id');
-        if (Input::has('website')) $company->website = Input::get('website');
-        if (Input::has('facebook')) $company->facebook = Input::get('facebook');
-        if (Input::has('twitter')) $company->twitter = Input::get('twitter');
-        if (Input::has('address')) $company->address = Input::get('address');
-        if (Input::has('opening_time')) $company->opening_time = Input::get('opening_time');
-        if (Input::has('closing_time')) $company->closing_time = Input::get('closing_time');
-        $company->image = "no image";
-        //return $company;
-        $company->slug = str_replace(' ', '-', str_replace('.', ' ', str_replace('/', ' ', addslashes(Input::get('name')))));
+        if(!empty($request->features))$features = array_filter($request->features);
+
+        if(in_array('wifi',$features)) $company->wifi = 1;
+        if(in_array('mall',$features)) $company->shoppingmall = 1;
+        if(in_array('hospital',$features)) $company->hospital = 1;
+        if(in_array('water',$features)) $company->wateraccess = 1;
+        if(in_array('lake',$features)) $company->river_lake = 1;
+        if(in_array('mountain',$features)) $company->mountain = 1;
+        if(in_array('park',$features)) $company->nationalpark = 1;
+        if(in_array('swamp',$features)) $company->swamp = 1;
+
+        $company->user_id = Auth::guard('user')->id();
+        if(Input::has('name')) $company->name = Input::get('name');
+        if(Input::has('description')) $company->description = Input::get('description');
+        if(Input::has('district')) $company->district = Input::get('district');
+        if(Input::has('country')) $company->country = Input::get('country');
+        if(Input::has('price')) $company->price = Input::get('price');
+        if(Input::has('rooms')) $company->rooms = Input::get('rooms');
+        if(Input::has('adults')) $company->adults = Input::get('adults');
+        if(Input::has('children')) $company->children = Input::get('children');
+        if(Input::has('type')) $company->type_id = Input::get('type');
+        if(Input::has('bathrooms')) $company->bathrooms = Input::get('bathrooms');
+        if(Input::has('toilets')) $company->toilets = Input::get('toilets');
+        if(Input::has('address')) $company->address = Input::get('address');
+        $company->slug = str_replace(' ', '',str_replace('.',' ',str_replace('/',' ',addslashes(Input::get('name')))));
+        if (!empty($request->image))$company->image = "no image";
         $i = 1;
 
 
@@ -153,12 +162,12 @@ class CompanyController extends Controller
                     $i = $i + 1;
                 }
             }
-            if(Service::where('company_id',$company->id)->count()<1){
+
+            if(HomeFeature::where('company_id',$company->id)->count()<1){
                 foreach ($services as $cs) {
                     //$s = Service::where('company_id', $id)->get();
-                    $s = new Service(['title', $cs]);
-                    $s->title = $cs;
-                    $s->user_id = Auth::guard('user')->id();
+                    $s = new HomeFeature(['feature', $cs]);
+                    $s->feature = $cs;
                     $s->company_id = $id;
 
                     $s->save();
@@ -166,18 +175,18 @@ class CompanyController extends Controller
 
             }else {
 
-                if (Service::where('company_id', $company->id)->delete()) {
+                if (HomeFeature::where('company_id', $company->id)->delete()) {
                     foreach ($services as $cs) {
                         //$s = Service::where('company_id', $id)->get();
-                        $s = new Service(['title', $cs]);
-                        $s->title = $cs;
-                        $s->user_id = Auth::guard('user')->id();
+                        $s = new HomeFeature(['feature', $cs]);
+                        $s->feature = $cs;
                         $s->company_id = $id;
 
                         $s->save();
                     }
                 }
             }
+
             flash('Company has successfully been added.')->success();
             return redirect(route('user.profile'));
         } else {
@@ -194,11 +203,12 @@ class CompanyController extends Controller
     {
 
         ini_set('memory_limit', '256M');
-        ini_set('max_execution_time', 600);;
+        ini_set('max_execution_time', 600);
+        $services = array_filter($request->more_features);
 
         $company = new Company();
 
-        $features = array_filter($request->features);
+        if(!empty($request->features))$features = array_filter($request->features);
 
         if(in_array('wifi',$features)) $company->wifi = 1;
         if(in_array('mall',$features)) $company->shoppingmall = 1;
@@ -213,13 +223,14 @@ class CompanyController extends Controller
         if(Input::has('name')) $company->name = Input::get('name');
         if(Input::has('description')) $company->description = Input::get('description');
         if(Input::has('district')) $company->district = Input::get('district');
+        if(Input::has('country')) $company->country = Input::get('country');
         if(Input::has('price')) $company->price = Input::get('price');
         if(Input::has('rooms')) $company->rooms = Input::get('rooms');
         if(Input::has('adults')) $company->adults = Input::get('adults');
         if(Input::has('children')) $company->children = Input::get('children');
         if(Input::has('type')) $company->type_id = Input::get('type');
         if(Input::has('bathrooms')) $company->bathrooms = Input::get('bathrooms');
-        if(Input::has('toilets')) $company->toilets = 0;
+        if(Input::has('toilets')) $company->toilets = Input::get('toilets');
         if(Input::has('address')) $company->address = Input::get('address');
         $company->slug = str_replace(' ', '',str_replace('.',' ',str_replace('/',' ',addslashes(Input::get('name')))));
         $company->image = "no image";
@@ -251,6 +262,16 @@ class CompanyController extends Controller
                 //sleep(1);
                 $i = $i+1;
             }
+
+            foreach ($services as $cs) {
+                $s = new HomeFeature();
+                //$service = new Service(['title',$company_service]);
+                $s->feature = $cs;
+                $s->company_id = $insertedId = $company->id;
+
+                $s->save();
+            }
+
 
             flash('Company has successfully been added.')->success();
             return redirect(route('user.profile'));

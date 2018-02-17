@@ -6,6 +6,7 @@ use App\ServiceRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Input, Redirect;
@@ -21,11 +22,16 @@ class UserProfileController extends Controller
     function showUserProfile(){
         //return "am in here";
 
-        /*$orders = Company::find(31);
-
-            return $orders->requests;*/
 
         $auth_user_id = Auth::guard('user')->id();
+
+        /*foreach ($orders as $order){
+            if($order->company->user_id == $auth_user_id){
+                return $order->name;
+            }
+
+        }
+        exit;*/
 
         //$user = User::find($auth_user_id);
         $company = Company::where('user_id',$auth_user_id)->paginate(9);
@@ -83,49 +89,39 @@ class UserProfileController extends Controller
         if(Input::has('phone')) $user->phone = Input::get('phone');
         if(Input::has('email')) $user->email = Input::get('email');
 
-        if($user->save()){
-            flash('Update was successfully done.')->success();
-            return redirect(route('user.profile.edit'));
-        }
-        else {
-            # code...
-            flash('Update was unsuccessfully done.')->success();
-            return redirect(route('user.profile.edit'));
-        }
+        if( $request->hasFile('edit_photo') ) {
 
-        /*if( $request->hasFile('edit_photo') ) {
-
-          $imageName = $request->input('username').'.'.$request->edit_photo->extension();
+          $imageName = $request->input('name').'.'.$request->edit_photo->extension();
 
           $imageName = str_replace(' ', '_', $imageName);
           if($path = $request->edit_photo->move(public_path().'/cache_uploads/', $imageName)){
-              $agent->profile_picture = $imageName;
+              $user->image = $imageName;
 
-              if($agent->save()){
+              if($user->save()){
                 $path = public_path().'/cache_uploads/'.$imageName;
 
                     $this->resizeProfileImage($path,$imageName);
 
                   flash('Update was successfully done.')->success();
-                  return redirect(route('agent.profile'));
+                  return redirect(route('user.profile.edit'));
               }
               else{
-                flash('Un successfull Update')->success();
-                return redirect(route('agent.profile'));
+                flash('Un successfull Update')->error();
+                return redirect(route('user.profile.edit'));
               }
 
         }else{
-          if($agent->save()){
+          if($user->save()){
               flash('Update was successfully done.')->success();
-              return redirect(route('agent.profile'));
+              return redirect(route('user.profile.edit'));
           }
           else{
-            flash('Un successfull Update')->success();
-            return redirect(route('agent.profile'));
+            flash('Un successfull Update')->error();
+              return redirect(route('user.profile.edit'));
           }
 
         }
-      }*/
+      }
 
 
     }
@@ -163,6 +159,31 @@ class UserProfileController extends Controller
         $services = Company::where('active',0)->where('user_id',$id)->paginate(5);
         return view("user.pending")
             ->with('companies',$services);
+    }
+
+    function resizeProfileImage($path,$image_name)
+    {
+
+        ini_set('memory_limit','256M');
+        ini_set('max_execution_time', 600);
+
+        $image_path = $path;
+
+        Image::make($image_path)
+            ->resize(239, 239)
+            ->save(public_path().'/images/users/all_user_239x239/'.$image_name);
+
+        Image::make($image_path)
+            ->resize(74, 74)
+            ->save(public_path().'/images/users/contact_user_74x74/'.$image_name);
+
+        Image::make($image_path)
+            ->resize(71, 71)
+            ->save(public_path().'/images/users/home_71x71/'.$image_name);
+
+        Image::make($image_path)
+            ->resize(330, 330)
+            ->save(public_path().'/images/users/profile_330x330/'.$image_name);
     }
 
 

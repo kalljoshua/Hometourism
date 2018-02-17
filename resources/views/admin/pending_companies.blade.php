@@ -1,6 +1,6 @@
 @extends('layouts.adminLayout')
 @section('title')
-    <title>ServiceHunt Admin : Pending Companies</title>
+    <title>HomeTourism Admin : Pending Companies</title>
 @endsection
 @section('content')
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\PopularDestination;
 use App\UserExperience;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -22,13 +23,22 @@ class HomeController extends Controller
         $featured_services = Company::where('featured', 1)->where('active', 1)->orderBy('created_at', 'DESC')->get();
         $most_viewed_services = Company::where('active', 1)->orderBy('views', 'DESC')->take(15)->get();
         $recent_services = Company::where('active', 1)->orderBy('created_at', 'DESC')->take(20)->get();
+        $populars = PopularDestination::orderBy('created_at', 'DESC')->get();
         //return $categories;
         return view('user.index')
             ->with('experiences', $experience)
             ->with('featured_services', $featured_services)
             ->with('most_viewed_services', $most_viewed_services)
             ->with('recent_services', $recent_services)
-            /*->with('searches', $searches)*/;
+            ->with('populars', $populars);
+    }
+
+    function destinationDetails($name)
+    {
+        $company = PopularDestination::where('slug',$name)->first();
+        $company->increment('views');
+        return view('user.destination_details')
+            ->with('company',$company);
     }
 
     function loadMoreSubCategories(Request $request)

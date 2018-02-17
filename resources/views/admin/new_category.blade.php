@@ -39,23 +39,17 @@
                 placeholder="Enter Category name"class="form-control" >
               </div>
             </div>
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Textarea</label>
-              <div class="col-sm-6">
-                <textarea style="border-radius: 4px" class="form-control" name="description" rows="3" placeholder="Enter Description...">
-                </textarea>
-              </div>
-            </div>
             <!-- /.box-body -->
             <div class="box-footer">
               <button type="submit" class="btn btn-info pull-right">Submit</button>
             </div>
             <!-- /.box-footer -->
-          </form>
         </div>
         <!-- /.box -->
+        </form>
       </div>
       <!--/.col (right) -->
+    </div>
 
     </section>
 

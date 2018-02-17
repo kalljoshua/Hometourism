@@ -35,7 +35,7 @@
                 <tr>
                   <th>Date</th>
                   <th>Name</th>
-                  <th>Sub-Categories</th>
+                  <th>Destinations</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -46,7 +46,7 @@
                   <td>
                     {{$category->name}}
                   </td>
-                  <td>{{$category->sub_category->count()}}</td>
+                  <td>{{$category->destinations->count()}}</td>
                   <td class="text-left">
                       <a href="{{route('admin.category.edit',['id'=>$category->id])}}"
                          class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top"
@@ -63,7 +63,7 @@
                 <tr>
                   <th>Date</th>
                   <th>Name</th>
-                  <th>Sub-categories</th>
+                  <th>Destinations</th>
                   <th>Action</th>
                 </tr>
                 </tfoot>

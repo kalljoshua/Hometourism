@@ -203,7 +203,6 @@ h5 {
     z-index: 99;
 }
 .title-with-separator {
-    background: url("../images/title-separator.png") bottom center repeat-x;
     padding-bottom: 25px;
     display: inline-block;
     margin-bottom: 60px;
@@ -1230,7 +1229,7 @@ h5 {
     font-size: 20px;
 }
 #tropical-banner {
-    margin-bottom: 65px;
+    margin-bottom: 85px;
     position: relative;
 }
 #tropical-banner .overlay {

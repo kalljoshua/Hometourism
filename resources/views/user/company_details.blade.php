@@ -8,7 +8,7 @@
         <div id="tropical-banner" class=" text-center clearfix">
             <img src="/assets/images/banner.jpg" alt="banner"/>
             <div class="container banner-contents clearfix">
-                <h2 class="template-title p-name"><strong>{{$company->name}}</strong></h2>
+                @include('user.search')
             </div>
             <div class="breadcrumb-wrapper clearfix">
                 <div class="container">
@@ -39,6 +39,23 @@
                                 @endfor
                                 ({{$company->rating}})
                             </span>
+                            <label class="switch1 pull-right">
+                                <input type="checkbox" id="sus-check-company{{$company->id}}"
+                                       data-property-id="{{$company->id}}"
+                                       onchange="fullbooking({{$company->id}});">
+                                <div class="slider1 round"></div>
+                            </label>
+                            <p class="pull-right">&nbsp;&nbsp;&nbsp;&nbsp;Full Booking: &nbsp;</p>
+                            <span>
+                                @if(Auth::guard('user')->user())
+                                    @if(Auth::guard('user')->user()->id==$company->user_id)
+                                        <a class="t-btn btn-sm btn-info pull-right" href="/home/{{$company->slug}}/edit">Edit</a>
+                                    @endif
+                                @endif
+
+                            </span>
+
+
                         </header>
                         <article class="tour-post-single clearfix">
                             <div class="tour-single-slider animatedParent clearfix">
@@ -70,16 +87,22 @@
                                 <div class="tour-post-meta pull-right animated fadeInUpShort clearfix">
                                     <span><i class="fa fa-map-marker"></i><strong>Address : &nbsp;
                                         </strong>{{$company->address}}</span>
-                                    <span><i class="fa fa-clock-o"></i><strong>Duration : &nbsp;
-                                        </strong>{{$company->created_at}}</span>
+                                    <span><i class="fa fa-briefcase"></i><strong>Status : &nbsp;
+                                        </strong>@if($company->full_booking>0)<b style="color: red">Fully Booked</b>
+                                        @else Vaccant @endif</span>
                                     <span><i class="fa fa-tags"></i><strong>Price : &nbsp;
-                                        </strong>UGX {{number_format($company->price)}}</span>
+                                        </strong>$ {{number_format($company->price)}}</span>
                                 </div>
                                 <p> {{$company->description}}</p>
                                 <footer class="tour-contents-footer clearfix">
-                                    @if(Auth::guard('user')->user() )
+                                    @if(Auth::guard('user')->user())
+                                        @if($company->full_booking<1)
                                     <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
-                                       data-target="#booking-popup">BOOK THIS HOMEw</a>
+                                       data-target="#booking-popup">BOOK THIS HOME</a>
+                                        @else
+                                            <a class="t-btn btn-red pull-right" href="#">Fully Booked</a>
+                                        @endif
+
                                     @else
                                         <a class="t-btn btn-red pull-right" href="#" data-toggle="modal"
                                            data-target="#booking-popup">REQUEST A HOST HOME</a>
@@ -165,7 +188,8 @@
                                                     <div class="form-group">
                                                         <div class="input-icon">
                                                         <textarea rows="3" class="form-control" name="expectations"
-                                                                  placeholder="Enter request info" type="text">Detailed Expectations....
+                                                                  placeholder="Enter request info" type="text">
+                                                            Detailed Expectations....
                                                         </textarea>
                                                         </div>
                                                     </div>
@@ -240,7 +264,7 @@
                                 </div>
                                 <div class="accommodation animated fadeInDownShort clearfix">
                                     <ul class="clearfix">
-                                        <li>@if($company->hospitals>0)
+                                        <li>@if($company->hospital>0)
                                                 Hospital Nearby
                                             @else
                                                 No Hospital Nearby
@@ -293,6 +317,24 @@
                                     </ul>
 
                                 </div>
+                                @if(sizeof($company->features)>0)
+                                <h5 class="title-2"><strong>More features that might interest you</strong></h5>
+                                <section class="home-tour-type animatedParent clearfix">
+                                    <div class="container">
+                                        <div class="row">
+                                            @foreach($company->features as $type)
+                                                <div class="col-md-3 col-xs-6">
+                                                    <article class="service-var-2 animated fadeInLeftShort clearfix">
+                                                        <div class="contents-wrap">
+                                                            <h5 class="entry-title p-name">{{$type->feature}}</h5>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </section>
+                                @endif
                             </div>
                             <h5 class="title-2"><strong>Reviews and Comments</strong></h5>
                             <section class="testimonial-var-two animatedParent clearfix" style="background-color: white">
@@ -302,7 +344,7 @@
                                         <div class="col-sm-4">
                                             <article class="testimonial var-two animated fadeInLeftShort clearfix">
                                                 <figure class="avatar">
-                                                    <img src="/assets/images/avatar.jpg" alt="avatar"/>
+                                                    <img src="/images/users/contact_user_74x74/{{$reviews->user->image}}" alt="avatar"/>
                                                 </figure>
                                                 <div class="contents">
                                                     <p>“{{$reviews->review}}” </p>
@@ -358,7 +400,7 @@
                                     <article class="tour-post animated fadeInRightShort">
                                         <header class="tour-post-header clearfix">
                                             <span class="tour-price pull-left">
-                                                UGX {{number_format($related->price)}}</span>
+                                                $ {{number_format($related->price)}}</span>
                                             <span class="tour-days pull-right" style="color: #FDC600">
                                                     @for ($k=1; $k <= 5 ; $k++)
                                                     <span data-title="Average Rate: 5 / 5"

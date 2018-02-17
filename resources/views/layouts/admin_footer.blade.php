@@ -5,3 +5,4 @@
     <strong>Copyright &copy; {{date('Y')}} <a href="/">HomeTourism</a>.</strong> All rights
     reserved.
   </footer>
+@include('layouts.countries')

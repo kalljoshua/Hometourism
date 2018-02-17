@@ -59,7 +59,7 @@
     </div>
     <div class="site-info animated pulse col-md-12" style="background-color: black">
                 <div class="pull-left col-sm-8" style="background-color: black">
-                    <p>© <?php echo date('Y');?> - Shatsi Host Homes.</p>
+                    <p>© <?php echo date('Y');?> - ShatsiBed.</p>
                 </div>
                 <div class="pull-right col-sm-4" style="background-color: black">
                     <a href="{{route('user.termsofUse')}}">Terms of Use</a>

@@ -27,4 +27,14 @@ class Company extends Model
     public function favorites_to_user(){
         return $this->belongsToMany('App\User','favourites');
     }
+
+    public function requests()
+    {
+        return $this->hasMany('App\ServiceRequest');
+    }
+
+    public function features()
+    {
+        return $this->hasMany('App\HomeFeature');
+    }
 }

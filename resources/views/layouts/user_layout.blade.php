@@ -34,6 +34,69 @@
     <script src="/assets/js/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        /* The switch - the box around the slider */
+        .switch1 {
+            position: relative;
+            display: inline-block;
+            width: 55px;
+            height: 27px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch1 input {
+            display: none;
+        }
+
+        /* The slider */
+        .slider1 {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider1:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider1 {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider1 {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider1:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider1.round {
+            border-radius: 34px;
+        }
+
+        .slider1.round:before {
+            border-radius: 50%;
+        }
+    </style>
+
 </head>
 <body>
 <div id="page" class="hfeed site">
@@ -51,6 +114,7 @@
 </div><!-- .site -->
 
 <script type="text/javascript" src="/assets/js/jquery-2.1.3.min.js"></script>
+<script src="/js/full-booking.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.js"></script>
 <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/js/respond.min.js"></script>
@@ -208,7 +272,32 @@
     });
 
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+        var add_button      = $(".add_field_button"); //Add button ID
 
+        var x = 1; //initlal text box count
+        $(add_button).click(function(e){ //on add input button click
+            e.preventDefault();
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                $(wrapper).append('<div class="input-group">'+
+                    '<input type="text" name="more_features[]" placeholder="Enter another Feature" class="form-control">'+
+                    '<span class="remove_field input-group-btn">'+
+                    '<button class="btn btn-danger" type="button"><i class="fa fa-remove"></i></button>'+
+                    '</span></div>'); //add input box
+            }
+        });
+
+        $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+            e.preventDefault(); $(this).parent('div').remove(); x--;
+        })
+    });
+
+
+</script>
 
 
 </body>

@@ -8,7 +8,7 @@
         <div id="tropical-banner" class=" text-center clearfix">
             <img src="/assets/images/banner.jpg" alt="banner"/>
             <div class="container banner-contents clearfix">
-                <h2 class="template-title p-name"><strong>{{ $posts->title }}</strong></h2>
+                @include('user.search')
             </div>
             <div class="breadcrumb-wrapper clearfix">
                 <div class="container">

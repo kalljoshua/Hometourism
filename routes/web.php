@@ -77,12 +77,16 @@ Route::group(['middleware' => 'user'], function () {
     Route::post('/user/select-package', 'User\PackageSubsriptionController@addPackage')->name('user.select.package.submit');
     Route::post('/user/account-close', 'User\UserProfileController@deleteAccount')->name('account.close');
 
+//Full Booking
+    Route::get('/user/fully-booked-homes', 'User\UserFullyBookController@suspendCompany')->name('book.home');
+    Route::get('/user/get-fully-booked-homes', 'User\UserFullyBookController@getSuspendedCompanies')->name('booked.homes');
+    Route::get('/user/home/{id}/unbook', 'User\UserFullyBookController@unsuspendCompany')->name('user.home.unbook');
 
 //company Routes
     Route::get('/user/company', 'User\CompanyController@newCompany')->name('company.create');
     Route::post('/user/company', 'User\CompanyController@postCompany')->name('company.submit');
-    Route::get('/company/{slug}/edit', 'User\CompanyController@companyEdit')->name('company.edit');
-    Route::post('/company/edit', 'User\CompanyController@submitEdit')->name('company.edit.submit');
+    Route::get('/home/{slug}/edit', 'User\CompanyController@companyEdit')->name('company.edit');
+    Route::post('/home/edit', 'User\CompanyController@submitEdit')->name('company.edit.submit');
 
     //service routes
     Route::get('/user/select-package', 'User\UserCreateServiceController@showSelectPackage')->name('user.select.package');
@@ -101,6 +105,7 @@ Route::group(['middleware' => 'user'], function () {
 
 //company routes
 Route::get('/{slug}', 'User\CompanyController@companyDetails')->name('company.details');
+Route::get('/popular-destination/{slug}', 'User\HomeController@destinationDetails')->name('destination.details');
 Route::get('/companies/{id}/category', 'User\CompanyController@getCategory')->name('company.category');
 
 
@@ -170,6 +175,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/suspended/companies', 'Admin\AdminCompanyController@suspended')->name('admin.suspended.companies');
     /*
      Route::post('/admin/service/delete', 'Admin\AdminServicesController@destroy')->name('admin.service.destroy');*/
+
+    //destinations routes admin
+    Route::get('/admin/all-destinations', 'Admin\PopularDestinationsController@allDestinations')->name('admin.destination.listings');
+    Route::get('/admin/new-destination', 'Admin\PopularDestinationsController@newDestination')->name('admin.create.destination.form');
+    Route::post('/admin/new-destination', 'Admin\PopularDestinationsController@submitDestination')->name('admin.submit.destination');
 
     //requests routes admin
     Route::get('/admin/all-requests', 'Admin\ServiceRequestsController@serviceRequests')->name('admin.service.requests');

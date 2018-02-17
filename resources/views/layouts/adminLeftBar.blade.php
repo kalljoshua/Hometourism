@@ -97,7 +97,7 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-tag text-white"></i>
-                    <span>Requests & Orders</span>
+                    <span>Requests & Bookings</span>
                     <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
@@ -106,10 +106,26 @@
                     <li><a href="{{route('admin.service.requests')}}">
                             <i class="fa fa-circle-o"></i> All Requests</a></li>
                     <li><a href="{{route('admin.service.orders')}}">
-                            <i class="fa fa-circle-o"></i> All Orders</a></li>
+                            <i class="fa fa-circle-o"></i> All Bookings</a></li>
                 </ul>
             </li>
-
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-envelope text-white"></i>
+                    <span>Popular Destinations</span>
+                    <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.destination.listings')}}">
+                            <i class="fa fa-circle-o"></i> Subscribers</a>
+                    </li>
+                    <li><a href="{{route('admin.create.destination.form')}}">
+                            <i class="fa fa-circle-o"></i> New
+                            Letter</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope text-white"></i>
@@ -151,6 +167,20 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('admin.all.types')}}"><i class="fa fa-circle-o"></i> All Types</a></li>
                     <li><a href="{{route('admin.new.type')}}"><i class="fa fa-circle-o"></i> New Type</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-server text-red"></i>
+                    <span>Categories</span>
+                    <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('admin.all.categories')}}"><i class="fa fa-circle-o"></i> All Categories</a>
+                    </li>
+                    <li><a href="{{route('admin.new.category')}}"><i class="fa fa-circle-o"></i> New Category</a></li>
                 </ul>
             </li>
             <li><a href="/"><i class="fa fa-home text-aqua"></i> <span>Home Page</span></a></li>

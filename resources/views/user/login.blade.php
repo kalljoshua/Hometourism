@@ -89,8 +89,8 @@
                                                placeholder="Phone Contact" required>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="country" id="email" tabindex="1" class="form-control"
-                                               placeholder="Country of Origin" required>
+                                        <input type="text" name="country" tabindex="1" class="form-control"
+                                           list="countries" placeholder="Country of Origin" required>
                                     </div>
                                     <div class="form-group">
                                         <textarea type="text" name="address" id="email" tabindex="1" class="form-control"
@@ -99,6 +99,27 @@
                                     <div class="form-group">
                                         <input type="password" name="password" id="password" tabindex="2" class="form-control"
                                                placeholder="Password">
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-md-3">
+                                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput"
+                                                     style="width: 200px; height: 150px;">
+                                                    <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt=""/>
+                                                </div>
+                                                <div>
+													<span class="btn btn-default btn-file">
+													<span class="fileinput-new">
+													Select profile image </span>
+													<span class="fileinput-exists">
+													Change </span>
+													<input type="file" name="photo">
+													</span>
+                                                    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                        Remove </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

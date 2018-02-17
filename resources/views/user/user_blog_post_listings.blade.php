@@ -8,7 +8,7 @@
         <div id="tropical-banner" class=" text-center clearfix">
             <img src="/assets/images/banner.jpg" alt="banner"/>
             <div class="container banner-contents clearfix">
-                <h2 class="template-title p-name"><strong>Blog</strong></h2>
+                @include('user.search')
             </div>
             <div class="breadcrumb-wrapper clearfix">
                 <div class="container">
@@ -34,7 +34,7 @@
                             <div class="entry-contents animated fadeInRightShort clearfix">
                                 <h4 class="entry-title">
                                     <a href="{{route('user.show.posts',['slug'=>$post->slug])}}">
-                                        t{{$post->title}}</a></h4>
+                                        {{$post->title}}</a></h4>
                                 <p>{!! str_limit($post->body, $limit = 250, $end = '...') !!}</p>
                                 <div class="post-meta clearfix">
                                     <span class="date pull-left"><i class="fa fa-clock-o"></i>

@@ -21,12 +21,12 @@ class RegisterController extends Controller
         if(Input::has('email')) $user->email = Input::get('email');
         if(Input::has('password')) $user->password = bcrypt(Input::get('password'));
 
-        //if( $request->hasFile('photo') ) {
-        /*$imageName = $request->input('first_name').'.'.$request->photo->extension();
+        if( $request->hasFile('photo') ) {
+        $imageName = $request->input('name').'.'.$request->photo->extension();
 
         $imageName = str_replace(' ', '_', $imageName);
         if($path = $request->photo->move(public_path().'/cache_uploads/', $imageName)){
-          $user->image = $imageName;*/
+          $user->image = $imageName;
 
 
         $check_agent_email = User::where('email',Input::get('email'))->get();
@@ -38,17 +38,17 @@ class RegisterController extends Controller
 
         if($user->save())
         {
-            /*$path = public_path().'/cache_uploads/'.$imageName;
+            $path = public_path().'/cache_uploads/'.$imageName;
 
-            $this->resizeProfileImage($path,$imageName);*/
+            $this->resizeProfileImage($path,$imageName);
             flash('Your account has successfully been created')->success();
             return redirect(route('user.login'));
         }
-        /*}
-      }else{
-        flash('Please select an image')->danger();
-        return redirect(route('user.create.service'));
-      }*/
+        }
+      }else {
+            flash('Please select an image')->danger();
+            return redirect(route('user.create.service'));
+        }
 
     }
 

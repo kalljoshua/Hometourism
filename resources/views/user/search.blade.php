@@ -15,7 +15,7 @@
                         </div>--}}
                         <div class="col-md-4 col-sm-6 search-col">
                             <div class="input-group">
-                                <input class="form-control" type="text" name="town" list="districts"
+                                <input class="form-control" type="text" name="country" list="countries"
                                        placeholder="Enter your Location">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">

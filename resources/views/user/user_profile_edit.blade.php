@@ -37,6 +37,25 @@
                                                   enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="form-group">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-preview thumbnail" data-trigger="fileinput"
+                                                                 style="width: 200px; height: 150px;">
+                                                                <img src="/images/users/profile_330x330/{{$user->image}}" alt=""/>
+                                                            </div>
+                                                            <div>
+                                                            <span class="btn btn-default btn-file">
+                                                            <span class="fileinput-new">
+                                                            Change profile image </span>
+                                                            <span class="fileinput-exists">
+                                                            Change </span>
+                                                            <input type="file" name="edit_photo">
+                                                            </span>
+                                                                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">
+                                                                    Remove </a>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="control-label">Full Name</label>
                                                     <input class="form-control" value="{{$user->name}}" name="name"
                                                            type="text">

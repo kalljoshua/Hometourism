@@ -69,8 +69,11 @@
                         <i class="fa fa-angle-down"></i></a></h5>
                 <div aria-expanded="true" id="orders" class="panel-collapse collapse in">
                     <ul class="acc-list">
-                        @foreach(App\ServiceRequest::where('type',2)->get() as $order)
-                            @if($order->company->user_id==Auth::guard('user')->id())
+                        <?php
+                        $orders = App\ServiceRequest::where('type',1)->get();
+                        ?>
+                        @foreach($orders as $order)
+                            @if($order->company->user_id == Auth::guard('user')->id())
                                 <li>
                                     <a href="#" data-toggle="modal"
                                        data-target="#modal-default-order">
@@ -78,6 +81,54 @@
                                 </li>
 
                             @endif
+
+                                <div class="modal fade" id="modal-default-order">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <span class="text-center"><h4><b>Booking Details</b></h4></span>
+                                            <aside class="panel panel-body panel-details" style="padding-left: 70px">
+
+                                                <p class="no-margin"><strong>Client Name:</strong>
+                                                    <a href="#"> {{$order->name}} </a></p></li>
+
+                                                <p class="no-margin"><strong>Client Contact:</strong>
+                                                    <a href="#">{{$order->contact}}</a> </p>
+
+                                                <p class="no-margin"><strong>Client Age:</strong>
+                                                    <a href="#">{{$order->age}}</a> </p>
+
+                                                <p class="no-margin"><strong>Period of Stay:</strong>
+                                                    <a href="#">{{$order->period}}</a> </p>
+
+                                                <p class=" no-margin "><strong>Email
+                                                        Address:</strong>
+                                                    <a href="#">{{$order->email}}</a></p>
+
+                                                <p class="no-margin"><strong>Number of Guests:</strong>
+                                                    <a href="#">{{$order->guests}}</a> </p>
+
+                                                <p class="no-margin"><strong>Preferred Location:</strong>
+                                                    <a href="#">{{$order->location}}</a></p>
+
+                                                <p class="no-margin"><strong>Order Date:</strong>
+                                                    <a href="#">{{$order->created_at}}</a></p>
+
+                                                <p class="no-margin"><strong>Expectations:</strong>
+                                                    <a href="#">{{$order->expectations}}</a></p>
+
+                                            </aside>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn-sm btn-danger pull-left"
+                                                        data-dismiss="modal">
+                                                    X
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
                         @endforeach
                     </ul>
                 </div>
@@ -143,50 +194,3 @@
 </div>
 <!-- /.modal -->
 
-<div class="modal fade" id="modal-default-order">
-    <div class="modal-dialog">
-        <div class="modal-content">
-           <span class="text-center"><h4><b>Booking Details</b></h4></span>
-            <aside class="panel panel-body panel-details" style="padding-left: 70px">
-
-                        <p class="no-margin"><strong>Client Name:</strong>
-                            <a href="#"> {{$order->name}} </a></p></li>
-
-                        <p class="no-margin"><strong>Client Contact:</strong>
-                            <a href="#">{{$order->contact}}</a> </p>
-
-                        <p class="no-margin"><strong>Client Age:</strong>
-                            <a href="#">{{$order->age}}</a> </p>
-
-                        <p class="no-margin"><strong>Period of Stay:</strong>
-                            <a href="#">{{$order->period}}</a> </p>
-
-                        <p class=" no-margin "><strong>Email
-                                Address:</strong>
-                            <a href="#">{{$order->email}}</a></p>
-
-                        <p class="no-margin"><strong>Number of Guests:</strong>
-                            <a href="#">{{$order->guests}}</a> </p>
-
-                        <p class="no-margin"><strong>Preferred Location:</strong>
-                            <a href="#">{{$order->location}}</a></p>
-
-                        <p class="no-margin"><strong>Order Date:</strong>
-                            <a href="#">{{$order->created_at}}</a></p>
-
-                        <p class="no-margin"><strong>Expectations:</strong>
-                            <a href="#">{{$order->expectations}}</a></p>
-
-            </aside>
-            <div class="modal-footer">
-                <button type="button" class="btn-sm btn-danger pull-left"
-                        data-dismiss="modal">
-                    X
-                </button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
